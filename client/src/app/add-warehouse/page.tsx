@@ -1,12 +1,14 @@
-import AddWarehouse from "../_components/AddWarehouse";
+import React from "react";
+import WarehouseForm from "../_components/create-warehouse";
 import Navbar from "../_components/Navbar";
 
-export default async function Home() {
-
+const page = () => {
   return (
-    <>
+    <div>
       <Navbar/>
-      <AddWarehouse/>
-    </>
+      <WarehouseForm />
+    </div>
   );
-}
+};
+
+export default page;
