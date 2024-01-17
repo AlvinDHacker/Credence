@@ -48,6 +48,8 @@ export default function WarehouseForm() {
   return (
     <>
     <div className="mx-auto w-[80%]">
+      <div className="grid md:grid-cols-3 gap-3">
+      <div className="md:col-span-2">
       <div className="justify-center flex gap-5">
         <h2 className="pb-4 text-center text-lg font-semibold text-gray-500">
           Add Your Warehouse
@@ -56,7 +58,7 @@ export default function WarehouseForm() {
       </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="mb-4 rounded bg-white px-8 pb-8 pt-6 w-[70%] mx-auto"
+        className="mb-4 rounded bg-white md:px-8 pb-8 pt-6 md:w-[90%] mx-auto"
       >
         <label
           className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
@@ -99,6 +101,20 @@ export default function WarehouseForm() {
           Create Warehouse
         </button>
       </form>
+      </div>
+      <div>
+      <div className="grid gap-3">
+          <div>
+            <img
+              className="h-auto max-w-full rounded-lg"
+              src="/warehouse.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+
+      </div>
     </div>
     </>
   );

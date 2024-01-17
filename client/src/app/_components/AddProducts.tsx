@@ -48,7 +48,7 @@ const AddProducts = () => {
 
   return (
     <div className="mx-auto w-[80%]">
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid md:grid-cols-3 gap-3">
         <div className="grid gap-3">
           <div>
             <img
@@ -66,13 +66,13 @@ const AddProducts = () => {
             </a>
           </div>
         </div>
-        <div className="col-span-2 grid w-[90%] mx-auto">
-        <h2 className="pb-1 text-start text-lg font-semibold text-gray-500">
+        <div className="md:col-span-2 grid md:w-[90%] mx-auto">
+        <h2 className="pb-1 mx-5 text-start text-lg font-bold text-gray-500">
           Add Your Products
         </h2>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className=" mb-4  rounded bg-white px-8 pb-8 pt-6"
+            className=" mb-4  rounded bg-white md:px-8 pb-8 pt-6"
           >
             <label
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
