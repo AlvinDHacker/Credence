@@ -6,6 +6,7 @@ import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 import { hasRole } from "../api/hasRole";
 import { redirect } from "next/navigation";
+import Verify from "./Verify";
 
 const Navbar = async () => {
   const hello = await api.post.hello.query({ text: "from tRPC" });
@@ -113,12 +114,14 @@ const Navbar = async () => {
           >
             <ul className="mt-4 flex flex-col rounded-lg border border-gray-100 p-4 font-medium md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:p-0 rtl:space-x-reverse">
               <li>
-                <a
-                  href="/verify-now"
-                  className="my-2 block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
-                >
-                  Verify Your Package
-                </a>
+                {role === "organizer" && (
+                  <Link
+                    href="/dashboard"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
+                  >
+                    Verify your packages
+                  </Link>
+                )}
               </li>
               <Link
                 href={
