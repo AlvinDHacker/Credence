@@ -1,12 +1,11 @@
 // "use client";
-import { CheckCircle, Package, Phone, User2, Waypoints } from "lucide-react";
+import { CheckCircle, User2, Waypoints } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 import { hasRole } from "../api/hasRole";
 import { redirect } from "next/navigation";
-import Verify from "./Verify";
 
 const Navbar = async () => {
   const hello = await api.post.hello.query({ text: "from tRPC" });
