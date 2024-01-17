@@ -46,8 +46,8 @@ const Dashboard = () => {
             <div className="my-1"></div>
             <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
             <div className="light relative overflow-x-auto rounded-md">
-                <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
-                  <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                <table className="w-full text-left text-sm text-gray-500 rtl:text-right ">
+                  <thead className="bg-gray-50 text-xs uppercase text-gray-700">
                     <tr>
                       <th scope="col" className="px-6 py-3">
                         Product name
@@ -64,10 +64,10 @@ const Dashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                    <tr className="border-b bg-white ">
                       <th
                         scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
                       >
                         Apple MacBook Pro 17"
                       </th>
@@ -75,10 +75,10 @@ const Dashboard = () => {
                       <td className="px-6 py-4">Laptop</td>
                       <td className="px-6 py-4">$2999</td>
                     </tr>
-                    <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                    <tr className="border-b bg-white ">
                       <th
                         scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
                       >
                         Microsoft Surface Pro
                       </th>
@@ -89,7 +89,7 @@ const Dashboard = () => {
                     <tr className="bg-white dark:bg-gray-800">
                       <th
                         scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
                       >
                         Magic Mouse 2
                       </th>
@@ -115,8 +115,8 @@ const Dashboard = () => {
               {/* <!-- Línea con gradiente --> */}
 
               <div className="light relative overflow-x-auto rounded-md">
-                <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
-                  <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+                <table className="w-full text-left text-sm text-gray-500 rtl:text-right ">
+                  <thead className="bg-gray-50 text-xs uppercase text-gray-700 ">
                     <tr>
                       <th scope="col" className="px-6 py-3">
                         Product name
@@ -133,10 +133,10 @@ const Dashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                    <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-80">
                       <th
                         scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
                       >
                         Apple MacBook Pro 17"
                       </th>
@@ -144,10 +144,10 @@ const Dashboard = () => {
                       <td className="px-6 py-4">Laptop</td>
                       <td className="px-6 py-4">$2999</td>
                     </tr>
-                    <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+                    <tr className="border-b bg-white dark:border-gray-700 ">
                       <th
                         scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
                       >
                         Microsoft Surface Pro
                       </th>
