@@ -1,12 +1,24 @@
-import React from 'react'
+import React from "react";
 
 const Hero = () => {
   return (
-    <div className='cover'>
-        <video className='md:block hidden w-full' src='./Hero.mp4' autoPlay muted loop/>
-        <video className='md:hidden block' src='./Hero_mobile.mp4' autoPlay muted loop/>
+    <div className="cover">
+      <video
+        className="hidden w-full md:block"
+        src="./Hero.mp4"
+        autoPlay
+        muted
+        loop
+      />
+      <video
+        className="block md:hidden"
+        src="./Hero_mobile.mp4"
+        autoPlay
+        muted
+        loop
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

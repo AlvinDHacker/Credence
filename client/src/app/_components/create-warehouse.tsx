@@ -1,10 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { createWarehouse } from "../api/createWarehouse";
 import { getServerAuthSession } from "~/server/auth";
+import { uid } from "../api/authsx";
 
 // Define your form schema using Zod
 const schema = z.object({
@@ -13,7 +14,7 @@ const schema = z.object({
 });
 
 export default function WarehouseForm() {
-  const [sessionValue, setSessionValue] = useState(null);
+  const [sessionValue, setSessionValue] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -24,69 +25,73 @@ export default function WarehouseForm() {
 
   useEffect(() => {
     const fetchSession = async () => {
-      const session = await getServerAuthSession();
+      const session = await uid();
       setSessionValue(session);
     };
 
-    fetchSession();
+    void fetchSession();
   }, []);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: FieldValues) => {
     // Call your createWarehouse function here
-    if (sessionValue && typeof sessionValue.user.name === "string") {
+    if (sessionValue && typeof sessionValue === "string") {
       const result = await createWarehouse(
-        sessionValue.user.id,
-        data.name,
-        data.location,
+        sessionValue,
+        data.name as string,
+        data.location as string,
       );
       console.log(result);
     }
   };
 
   return (
-    <><form
-          onSubmit={handleSubmit(onSubmit)}
-          className="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md"
+    <>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md"
       >
-          <div className="mb-4">
-              <label
-                  className="mb-2 block text-sm font-bold text-gray-700"
-                  htmlFor="name"
-              >
-                  Name
-              </label>
-              <input
-                  {...register("name")}
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="name"
-                  type="text"
-                  placeholder="Name" />
-              {typeof errors.name?.message === "string" && (
-                  <p className="text-red-500 text-xs italic">{errors.name.message}</p>
-              )}
-          </label>
+        <label
+          className="mb-2 block text-sm font-bold text-gray-700"
+          htmlFor="name"
+        >
+          Name
+        </label>
+        <input
+          {...register("name")}
+          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+          id="name"
+          type="text"
+          placeholder="Name"
+        />
+        {typeof errors.name?.message === "string" && (
+          <p className="text-xs italic text-red-500">{errors.name.message}</p>
+        )}
 
-          <label
-              className="mb-2 block text-sm font-bold text-gray-700"
-              htmlFor="location"
-          >
-              Location
-          </label>
-          <input
-              {...register("location")}
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="location"
-              type="text"
-              placeholder="Location" />
-          {typeof errors.location?.message === "string" && (
-              <p className="text-red-500 text-xs italic">{errors.location.message}</p>
-          )}
-      </label><button
+        <label
+          className="mb-2 block text-sm font-bold text-gray-700"
+          htmlFor="location"
+        >
+          Location
+        </label>
+        <input
+          {...register("location")}
+          className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
+          id="location"
+          type="text"
+          placeholder="Location"
+        />
+        {typeof errors.location?.message === "string" && (
+          <p className="text-xs italic text-red-500">
+            {errors.location.message}
+          </p>
+        )}
+        <button
           type="submit"
-          className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-      >
-              Create Warehouse
-          </button></>
-  </form>
-);
-
+          className="focus:shadow-outline mt-4 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+        >
+          Create Warehouse
+        </button>
+      </form>
+    </>
+  );
+}
