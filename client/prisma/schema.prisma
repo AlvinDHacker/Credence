@@ -92,6 +92,7 @@ model Products {
 model Vehicles {
     id             String        @id @default(cuid())
     name           String
+    mileage        Int
     Organization   Organization? @relation(fields: [organizationId], references: [id])
     organizationId String?
 }

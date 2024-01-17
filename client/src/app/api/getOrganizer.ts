@@ -11,5 +11,5 @@ export async function getUserOrganizationId(
   });
 
   // If the user was found, return their organizationId. Otherwise, return null.
-  return user ? (user.organizationId as string | null) : null; // Assert the type here
+  return user ? user.organizationId : null; // Assert the type here
 }

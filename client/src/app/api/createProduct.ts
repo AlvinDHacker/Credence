@@ -4,14 +4,13 @@ import type { User } from "@prisma/client";
 import { db } from "~/server/db";
 import { getUserOrganizationId } from "./getOrganizer";
 import { getServerAuthSession } from "~/server/auth";
-import type { Session } from "next-auth";
 
-const session: Promise<Session | null> = getServerAuthSession();
+const session = getServerAuthSession();
 
-export async function createWarehouse(
+export async function createProduct(
   userId: string,
   name: string,
-  location: string,
+  amount: number,
 ): Promise<string | null> {
   // Fetch the user from the database using their id
   const user: User | null = await db.user.findUnique({
@@ -26,10 +25,10 @@ export async function createWarehouse(
       return "Could not find organization for user";
     }
 
-    await db.warehouses.create({
+    await db.products.create({
       data: {
         name: name,
-        location: location,
+        amount: amount,
         Organization: {
           connect: { id: organizationId },
         },
@@ -42,7 +41,7 @@ export async function createWarehouse(
       data: { role: "organizer" },
     });
 
-    return "Warehouse created and user role updated successfully";
+    return "Product created and user role updated successfully";
   }
 
   // If the user was not found, return null

@@ -8,10 +8,10 @@ import type { Session } from "next-auth";
 
 const session: Promise<Session | null> = getServerAuthSession();
 
-export async function createWarehouse(
+export async function createVehicle(
   userId: string,
   name: string,
-  location: string,
+  mileage: number,
 ): Promise<string | null> {
   // Fetch the user from the database using their id
   const user: User | null = await db.user.findUnique({
@@ -26,10 +26,10 @@ export async function createWarehouse(
       return "Could not find organization for user";
     }
 
-    await db.warehouses.create({
+    await db.vehicles.create({
       data: {
         name: name,
-        location: location,
+        mileage: mileage,
         Organization: {
           connect: { id: organizationId },
         },
