@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function Wallet() {
   const account = useAccount();
-  const { connectors, connect } = useConnect();
+  const { connectors, connect, status } = useConnect();
   const { disconnect } = useDisconnect();
   let [isOpen, setIsOpen] = useState(false);
   const walletImgs = {
@@ -17,9 +17,11 @@ export default function Wallet() {
     Injected: 'injected.png'
   }
 
-  // useEffect(()=>{
-  //   setIsOpen(account.status != 'connected')
-  // },[account])
+  useEffect(()=>{
+    if(status == 'success'){
+      setIsOpen(false)
+    }
+  },[status])
 
 
   function closeModal() {
