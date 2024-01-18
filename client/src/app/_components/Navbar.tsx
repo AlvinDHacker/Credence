@@ -1,12 +1,11 @@
 // "use client";
-import { CheckCircle, Package, Phone, User2, Waypoints } from "lucide-react";
+import { CheckCircle, User2, Waypoints } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 import { hasRole } from "../api/hasRole";
 import { redirect } from "next/navigation";
-import Verify from "./Verify";
 
 const Navbar = async () => {
   const hello = await api.post.hello.query({ text: "from tRPC" });
@@ -33,7 +32,7 @@ const Navbar = async () => {
       <nav className="bg-white">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
           <a
-            href="#"
+            href="/"
             className="flex items-center space-x-3 text-black rtl:space-x-reverse"
           >
             <Waypoints />
@@ -52,7 +51,7 @@ const Navbar = async () => {
               </Link>
             )}
           </ul>
-          <ul className="flex flex-row">
+          {/* <ul className="flex flex-row">
             {role === "organizer" && (
               <Link
                 href="/portfolio"
@@ -61,6 +60,7 @@ const Navbar = async () => {
                 View Templates
               </Link>
             )}
+<<<<<<< HEAD
           </ul>
           {/* <ul className="flex flex-row">
             {role === "organizer" && (
@@ -71,6 +71,8 @@ const Navbar = async () => {
                 <ConnectButton />
               </Link>
             )}
+=======
+>>>>>>> 4104f7cbebe152e3a9bb798129d2fdf895ca4d1a
           </ul> */}
           <ul className="flex flex-row md:hidden">
             <li>
@@ -127,7 +129,7 @@ const Navbar = async () => {
                 {role === "organizer" && (
                   <Link
                     href="/dashboard"
-                    className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
+                    className="my-2 block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                   >
                     Verify your packages
                   </Link>

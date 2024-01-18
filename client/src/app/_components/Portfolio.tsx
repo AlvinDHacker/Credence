@@ -3,20 +3,20 @@ import Image from "next/image";
 import React from "react";
 
 const Portfolio = () => {
-  const data = [
-    {
-      picalt: "cert",
-      piclink: "/grp-cert/cert3.jpeg",
-    },
-    {
-      picalt: "cert",
-      piclink: "/grp-cert/cert3.jpeg",
-    },
-    {
-      picalt: "cert",
-      piclink: "/grp-cert/cert3.jpeg",
-    },
-  ];
+  // const data = [
+  //   {
+  //     picalt: "cert",
+  //     piclink: "/grp-cert/cert3.jpeg",
+  //   },
+  //   {
+  //     picalt: "cert",
+  //     piclink: "/grp-cert/cert3.jpeg",
+  //   },
+  //   {
+  //     picalt: "cert",
+  //     piclink: "/grp-cert/cert3.jpeg",
+  //   },
+  // ];
   return (
     <div className="mx-auto w-[70%]">
       <div className="flex flex-row rounded-lg bg-white">
@@ -74,7 +74,7 @@ const Portfolio = () => {
       <h1 className="mb-3 text-2xl font-bold tracking-tight text-gray-900">
         Your Products
       </h1>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 md:grid-cols-4 mb-10">
           <div className="grid gap-4">
             <div>
               <img
@@ -168,7 +168,7 @@ const Portfolio = () => {
             </div>
           </div>
         </div>
-      <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
+      {/* <div className="grid grid-cols-2 gap-4 md:grid-cols-3">
         {data.map((item, i) => (
           <div>
             <img
@@ -178,7 +178,7 @@ const Portfolio = () => {
             />
           </div>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };

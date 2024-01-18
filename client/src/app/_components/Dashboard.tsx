@@ -1,3 +1,4 @@
+import { MapPin } from "lucide-react";
 import React from "react";
 
 const Dashboard = () => {
@@ -7,6 +8,13 @@ const Dashboard = () => {
         Dashboard
       </h1>
 
+      <div className="flex justify-between">
+        <h2 className="pb-1 text-lg font-semibold text-gray-500">Welcome</h2>
+        <div className="mr-5 flex flex-row gap-5">
+          <MapPin />
+          <p>Andheri</p>
+        </div>
+      </div>
       <div className="flex flex-1 flex-wrap">
         <div className="w-full flex-1 p-4 md:w-1/2">
           <div className="mt-8 flex flex-wrap space-x-0 space-y-2 md:space-x-4 md:space-y-0">
@@ -16,27 +24,28 @@ const Dashboard = () => {
               </h2>
               <div className="my-1"></div>
               <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
-              <div
-                className="chart-container relative w-full"
-              >
+              <div className="chart-container relative w-full">
+                Zane's Graph
                 <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
-              Rs. 300
-            </h5>
+                  $2999
+                </h5>
               </div>
             </div>
 
-            <div className="flex-1 rounded-lg bg-white p-4 shadow-md md:w-1/2">
+            <a
+              href="/orders"
+              className="flex-1 rounded-lg bg-white p-4 shadow-md md:w-1/2"
+            >
               <h2 className="pb-1 text-lg font-semibold text-gray-500">
                 Orders
               </h2>
               <div className="my-1"></div>
               <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
-              <div
-                className="chart-container"
-              >
+              <div className="chart-container">
+                Zane's Graph
                 <canvas id="commercesChart"></canvas>
               </div>
-            </div>
+            </a>
           </div>
 
           <div className="mt-8 rounded-lg bg-white p-4 shadow-md">
@@ -46,60 +55,114 @@ const Dashboard = () => {
             <div className="my-1"></div>
             <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
             <div className="light relative overflow-x-auto rounded-md">
-                <table className="w-full text-left text-sm text-gray-500 rtl:text-right ">
-                  <thead className="bg-gray-50 text-xs uppercase text-gray-700">
-                    <tr>
-                      <th scope="col" className="px-6 py-3">
-                        Product name
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Color
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Category
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Price
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr className="border-b bg-white ">
-                      <th
-                        scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
-                      >
-                        Apple MacBook Pro 17"
-                      </th>
-                      <td className="px-6 py-4">Silver</td>
-                      <td className="px-6 py-4">Laptop</td>
-                      <td className="px-6 py-4">$2999</td>
-                    </tr>
-                    <tr className="border-b bg-white ">
-                      <th
-                        scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
-                      >
-                        Microsoft Surface Pro
-                      </th>
-                      <td className="px-6 py-4">White</td>
-                      <td className="px-6 py-4">Laptop PC</td>
-                      <td className="px-6 py-4">$1999</td>
-                    </tr>
-                    <tr className="bg-white dark:bg-gray-800">
-                      <th
-                        scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
-                      >
-                        Magic Mouse 2
-                      </th>
-                      <td className="px-6 py-4">Black</td>
-                      <td className="px-6 py-4">Accessories</td>
-                      <td className="px-6 py-4">$99</td>
-                    </tr>
-                  </tbody>
-                </table>
+              <table className="w-full text-left text-sm text-gray-500 rtl:text-right ">
+                <thead className="bg-gray-50 text-xs uppercase text-gray-700">
+                  <tr>
+                    <th scope="col" className="px-6 py-3">
+                      Product name
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Color
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Category
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                      Price
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b bg-white ">
+                    <th
+                      scope="row"
+                      className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
+                    >
+                      Apple MacBook Pro 17"
+                    </th>
+                    <td className="px-6 py-4">Silver</td>
+                    <td className="px-6 py-4">Laptop</td>
+                    <td className="px-6 py-4">$2999</td>
+                  </tr>
+                  <tr className="border-b bg-white ">
+                    <th
+                      scope="row"
+                      className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
+                    >
+                      Microsoft Surface Pro
+                    </th>
+                    <td className="px-6 py-4">White</td>
+                    <td className="px-6 py-4">Laptop PC</td>
+                    <td className="px-6 py-4">$1999</td>
+                  </tr>
+                  <tr className="bg-white">
+                    <th
+                      scope="row"
+                      className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
+                    >
+                      Magic Mouse 2
+                    </th>
+                    <td className="px-6 py-4">Black</td>
+                    <td className="px-6 py-4">Accessories</td>
+                    <td className="px-6 py-4">$99</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="my-7 grid grid-cols-2 gap-4 md:grid-cols-4">
+            <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+              <h2 className="pb-1 text-lg font-semibold text-gray-500">
+                No. of Warehouses
+              </h2>
+              <div className="my-1"></div>
+              <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+              <div className="chart-container relative w-full">
+                <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
+                  40 <span className="text-lg font-light">Warehouses</span>
+                </h5>
               </div>
+            </div>
+
+            <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+              <h2 className="pb-1 text-lg font-semibold text-gray-500">
+                Warehouse Capacity
+              </h2>
+              <div className="my-1"></div>
+              <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+              <div className="chart-container relative w-full">
+                <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
+                  10,000 <span className="text-lg font-light">ton</span>
+                </h5>
+              </div>
+            </div>
+
+            <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+              <h2 className="pb-1 text-lg font-semibold text-gray-500">
+                No. of Vehicles
+              </h2>
+              <div className="my-1"></div>
+              <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+              <div className="chart-container relative w-full">
+                <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
+                  100 <span className="text-lg font-light">Vehicles</span>
+                </h5>
+              </div>
+            </div>
+
+            <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+              <h2 className="pb-1 text-lg font-semibold text-gray-500">
+                Vehicle Capacity
+              </h2>
+              <div className="my-1"></div>
+              <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+              <div className="chart-container relative w-full">
+                <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
+                  3,000 <span className="text-lg font-light">boxes</span>
+                </h5>
+              </div>
+            </div>
           </div>
 
           {/* <!-- Cuarto contenedor -->
@@ -133,7 +196,7 @@ const Dashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-80">
+                    <tr className="border-b bg-white ">
                       <th
                         scope="row"
                         className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
@@ -144,7 +207,7 @@ const Dashboard = () => {
                       <td className="px-6 py-4">Laptop</td>
                       <td className="px-6 py-4">$2999</td>
                     </tr>
-                    <tr className="border-b bg-white dark:border-gray-700 ">
+                    <tr className="border-b bg-white ">
                       <th
                         scope="row"
                         className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
@@ -155,10 +218,10 @@ const Dashboard = () => {
                       <td className="px-6 py-4">Laptop PC</td>
                       <td className="px-6 py-4">$1999</td>
                     </tr>
-                    <tr className="bg-white dark:bg-gray-800">
+                    <tr className="bg-white">
                       <th
                         scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white"
+                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
                       >
                         Magic Mouse 2
                       </th>
