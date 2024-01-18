@@ -51,7 +51,7 @@ export default function WarehouseForm() {
       <div className="grid md:grid-cols-3 gap-3">
       <div className="md:col-span-2">
       <div className="justify-center flex gap-5">
-        <h2 className="pb-4 text-center text-lg font-semibold text-gray-500">
+        <h2 className="pb-4 text-center text-xl font-semibold text-gray-500">
           Add Your Warehouse
         </h2>
         <Factory />
@@ -72,6 +72,23 @@ export default function WarehouseForm() {
           id="name"
           type="text"
           placeholder="Name"
+        />
+        {typeof errors.name?.message === "string" && (
+          <p className="text-xs italic text-red-500">{errors.name.message}</p>
+        )}
+
+<label
+          className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          htmlFor="name"
+        >
+          Warehouse Capacity
+        </label>
+        <input
+          {...register("name")}
+          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm mb-5 text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          id="name"
+          type="text"
+          placeholder="In Tonnes"
         />
         {typeof errors.name?.message === "string" && (
           <p className="text-xs italic text-red-500">{errors.name.message}</p>

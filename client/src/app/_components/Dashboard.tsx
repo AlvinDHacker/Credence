@@ -1,23 +1,106 @@
-import { Construction, Factory, MapPin, PackageOpen, Store, Truck, Weight } from "lucide-react";
+import {
+  Construction,
+  Factory,
+  Home,
+  MapPin,
+  PackageOpen,
+  PlusCircle,
+  Scroll,
+  Store,
+  Truck,
+  User2,
+  Users2,
+  Weight,
+} from "lucide-react";
 import React from "react";
+import FixedNav from "./FixedNav";
 
 const Dashboard = () => {
   return (
     <div className=" mx-auto w-[80%] ">
+      <FixedNav />
       <h1 className="mb-3 text-2xl font-bold tracking-tight text-gray-900">
         Dashboard
       </h1>
 
       <div className="flex justify-between">
-        <h2 className="pb-1 text-lg font-semibold text-gray-500">Welcome</h2>
+        <h2 className="pb-1 text-lg font-semibold text-gray-500">
+          Welcome Organization Name
+        </h2>
         <div className="mr-5 flex flex-row gap-5">
           <MapPin />
           <p>Andheri</p>
         </div>
       </div>
+      <div className="my-7 grid grid-cols-1 gap-4 md:grid-cols-4">
+        <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+          <div className="flex justify-between">
+            <h2 className="pb-1 text-lg font-semibold text-gray-500">
+              No. of Warehouses
+            </h2>
+            <Store />
+          </div>
+          <div className="my-1"></div>
+          <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+          <div className="chart-container relative flex w-full flex-row gap-3">
+            <h5 className=" w-full text-5xl font-bold text-gray-900">
+              40 <span className="text-lg font-light">Warehouses</span>
+            </h5>
+          </div>
+        </div>
+
+        <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+          <div className="flex justify-between">
+            <h2 className="pb-1 text-lg font-semibold text-gray-500">
+              Warehouse Usage
+            </h2>
+            <PackageOpen />
+          </div>
+          <div className="my-1"></div>
+          <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+          <div className="chart-container relative flex w-full flex-row gap-3">
+            <h5 className="w-full text-5xl font-bold text-gray-900">
+              92% <span className="text-lg font-light">of 100</span>
+            </h5>
+          </div>
+        </div>
+
+        <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+          <div className="flex justify-between">
+            <h2 className="pb-1 text-lg font-semibold text-gray-500">
+              No. of Vehicles
+            </h2>
+            <Truck />
+          </div>
+          <div className="my-1"></div>
+          <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+          <div className="chart-container relative flex w-full flex-row gap-3">
+            <h5 className="w-full text-5xl font-bold text-gray-900">
+              100 <span className="text-lg font-light">Vehicles</span>
+            </h5>
+          </div>
+        </div>
+
+        <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+          <div className="flex justify-between">
+            <h2 className="pb-1 text-lg font-semibold text-gray-500">
+              No. of Employees
+            </h2>
+            <Users2 />
+          </div>
+          <div className="my-1"></div>
+          <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+          <div className="chart-container relative w-full">
+            <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
+              3,000 <span className="text-lg font-light">Employees</span>
+            </h5>
+          </div>
+        </div>
+      </div>
+
       <div className="flex flex-1 flex-wrap">
-        <div className="w-full flex-1 p-4 md:w-1/2">
-          <div className="mt-8 flex flex-wrap space-x-0 space-y-2 md:space-x-4 md:space-y-0">
+        <div className="w-full flex-1 py-2 md:w-1/2">
+          <div className="mt-1 flex flex-wrap space-x-0 space-y-2 md:space-x-4 md:space-y-0">
             <div className="flex-1 rounded-lg bg-white p-4 shadow-md md:w-1/2">
               <h2 className="pb-1 text-lg font-semibold text-gray-500">
                 Sales
@@ -49,6 +132,7 @@ const Dashboard = () => {
           </div>
 
           <div className="mt-8 rounded-lg bg-white p-4 shadow-md">
+            <a href="/orders">
             <h2 className="pb-4 text-lg font-semibold text-gray-500">
               Latest Orders
             </h2>
@@ -109,75 +193,7 @@ const Dashboard = () => {
                 </tbody>
               </table>
             </div>
-          </div>
-
-          <div className="my-7 grid grid-cols-2 gap-4 md:grid-cols-4">
-            <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
-            <div className="flex justify-between">
-              <h2 className="pb-1 text-lg font-semibold text-gray-500">
-                No. of Warehouses
-              </h2>
-              <Store/>
-              </div>
-              <div className="my-1"></div>
-              <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
-              <div className="flex flex-row gap-3 chart-container relative w-full">
-                
-                <h5 className=" w-full text-5xl font-bold text-gray-900">
-                  40 <span className="text-lg font-light">Warehouses</span>
-                </h5>
-              </div>
-            </div>
-
-            <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
-            <div className="flex justify-between">
-              <h2 className="pb-1 text-lg font-semibold text-gray-500">
-                Warehouse Capacity
-              </h2>
-              <PackageOpen/>
-              </div>
-              <div className="my-1"></div>
-              <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
-              <div className="flex flex-row gap-3 chart-container relative w-full">
-                
-                <h5 className="w-full text-5xl font-bold text-gray-900">
-                  10,000 <span className="text-lg font-light">ton</span>
-                </h5>
-              </div>
-            </div>
-
-            <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
-              <div className="flex justify-between">
-              <h2 className="pb-1 text-lg font-semibold text-gray-500">
-                No. of Vehicles
-              </h2>
-              <Truck/>
-              </div>
-              <div className="my-1"></div>
-              <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
-              <div className="flex flex-row gap-3 chart-container relative w-full">
-                
-                <h5 className="w-full text-5xl font-bold text-gray-900">
-                  100 <span className="text-lg font-light">Vehicles</span>
-                </h5>
-              </div>
-            </div>
-
-            <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
-            <div className="flex justify-between">
-              <h2 className="pb-1 text-lg font-semibold text-gray-500">
-                Vehicle Capacity
-              </h2>
-              <Construction/>
-              </div>
-              <div className="my-1"></div>
-              <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
-              <div className="chart-container relative w-full">
-                <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
-                  3,000 <span className="text-lg font-light">boxes</span>
-                </h5>
-              </div>
-            </div>
+            </a>
           </div>
 
           {/* <!-- Cuarto contenedor -->
