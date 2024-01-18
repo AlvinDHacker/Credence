@@ -2,14 +2,14 @@
 
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useLayoutEffect } from "react";
 import Link from "next/link";
 
 export default function Wallet() {
   const account = useAccount();
   const { connectors, connect } = useConnect();
   const { disconnect } = useDisconnect();
-  let [isOpen, setIsOpen] = useState(true);
+  let [isOpen, setIsOpen] = useState(false);
   const walletImgs = {
     MetaMask: 'metamask.png',
     WalletConnect: 'walletconnect.png',
@@ -17,11 +17,7 @@ export default function Wallet() {
     Injected: 'injected.png'
   }
 
-  // useLayoutEffect(()=>{
-  //   setIsOpen(account.status != 'connected')
-  // },[account])
-
-  // useLayoutEffect(()=>{
+  // useEffect(()=>{
   //   setIsOpen(account.status != 'connected')
   // },[account])
 
