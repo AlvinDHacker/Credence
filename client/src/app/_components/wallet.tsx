@@ -11,10 +11,10 @@ export default function Wallet() {
   const { disconnect } = useDisconnect();
   let [isOpen, setIsOpen] = useState(false);
   const walletImgs = {
-    MetaMask: 'metamask.png',
-    WalletConnect: 'walletconnect.png',
-    "Coinbase Wallet": 'coinbase.png',
-    Injected: 'injected.png'
+    MetaMask: '/metamask.png',
+    WalletConnect: '/walletconnect.png',
+    "Coinbase Wallet": '/coinbase.png',
+    Injected: '/injected.png'
   }
 
   useEffect(()=>{
