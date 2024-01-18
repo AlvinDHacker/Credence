@@ -1,4 +1,4 @@
-import { MapPin } from "lucide-react";
+import { Construction, Factory, MapPin, PackageOpen, Store, Truck, Weight } from "lucide-react";
 import React from "react";
 
 const Dashboard = () => {
@@ -113,48 +113,63 @@ const Dashboard = () => {
 
           <div className="my-7 grid grid-cols-2 gap-4 md:grid-cols-4">
             <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+            <div className="flex justify-between">
               <h2 className="pb-1 text-lg font-semibold text-gray-500">
                 No. of Warehouses
               </h2>
+              <Store/>
+              </div>
               <div className="my-1"></div>
               <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
-              <div className="chart-container relative w-full">
-                <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
+              <div className="flex flex-row gap-3 chart-container relative w-full">
+                
+                <h5 className=" w-full text-5xl font-bold text-gray-900">
                   40 <span className="text-lg font-light">Warehouses</span>
                 </h5>
               </div>
             </div>
 
             <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+            <div className="flex justify-between">
               <h2 className="pb-1 text-lg font-semibold text-gray-500">
                 Warehouse Capacity
               </h2>
+              <PackageOpen/>
+              </div>
               <div className="my-1"></div>
               <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
-              <div className="chart-container relative w-full">
-                <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
+              <div className="flex flex-row gap-3 chart-container relative w-full">
+                
+                <h5 className="w-full text-5xl font-bold text-gray-900">
                   10,000 <span className="text-lg font-light">ton</span>
                 </h5>
               </div>
             </div>
 
             <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+              <div className="flex justify-between">
               <h2 className="pb-1 text-lg font-semibold text-gray-500">
                 No. of Vehicles
               </h2>
+              <Truck/>
+              </div>
               <div className="my-1"></div>
               <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
-              <div className="chart-container relative w-full">
-                <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
+              <div className="flex flex-row gap-3 chart-container relative w-full">
+                
+                <h5 className="w-full text-5xl font-bold text-gray-900">
                   100 <span className="text-lg font-light">Vehicles</span>
                 </h5>
               </div>
             </div>
 
             <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+            <div className="flex justify-between">
               <h2 className="pb-1 text-lg font-semibold text-gray-500">
                 Vehicle Capacity
               </h2>
+              <Construction/>
+              </div>
               <div className="my-1"></div>
               <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
               <div className="chart-container relative w-full">
