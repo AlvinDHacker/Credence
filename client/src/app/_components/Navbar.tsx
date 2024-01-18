@@ -6,6 +6,7 @@ import { getServerAuthSession } from "~/server/auth";
 import { api } from "~/trpc/server";
 import { hasRole } from "../api/hasRole";
 import { redirect } from "next/navigation";
+import Wallet from "./wallet";
 
 const Navbar = async () => {
   const hello = await api.post.hello.query({ text: "from tRPC" });
@@ -60,19 +61,6 @@ const Navbar = async () => {
                 View Templates
               </Link>
             )}
-<<<<<<< HEAD
-          </ul>
-          {/* <ul className="flex flex-row">
-            {role === "organizer" && (
-              <Link
-                href="#"
-                className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
-              >
-                <ConnectButton />
-              </Link>
-            )}
-=======
->>>>>>> 4104f7cbebe152e3a9bb798129d2fdf895ca4d1a
           </ul> */}
           <ul className="flex flex-row md:hidden">
             <li>
@@ -88,13 +76,16 @@ const Navbar = async () => {
               className="block rounded px-3 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
             >
               {(await session) ? (
-                <button
-                  type="button"
-                  className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
-                >
-                  <User2 />
-                  Sign Out
-                </button>
+                <div className="">
+                  <Wallet />
+                  <button
+                    type="button"
+                    className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
+                  >
+                    <User2 />
+                    Sign Out
+                  </button>
+                </div>
               ) : (
                 <>
                   <button

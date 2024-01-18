@@ -1,7 +1,6 @@
 "use client"
 import React, { useState } from 'react'
 import QrReader from 'react-qr-scanner'
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 interface scanData{
     text: string
@@ -20,7 +19,6 @@ export default function StatusScanner() {
   return (
     <div className="">
         {!data ? <QrReader className='aspect-square' delay={100} onScan={handleScan} /> : data}
-        <ConnectButton />
     </div>
   )
 }

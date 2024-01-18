@@ -10,7 +10,7 @@ export default async function Home() {
       <Navbar />
       <Wallet />
       <Portfolio />
-      <GenerateQR data={"hello"} />
+      {/* <GenerateQR data={"hello"} /> */}
     </>
   );
 }
