@@ -1,5 +1,5 @@
-import Dashboard from "../_components/Dashboard";
-import Navbar from "../_components/Navbar";
+import Dashboard from "../../_components/Dashboard";
+import Navbar from "../../_components/Navbar";
 
 export default async function Home() {
 
