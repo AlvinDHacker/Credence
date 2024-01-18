@@ -84,7 +84,9 @@ model Organization {
 model Products {
     id             String        @id @default(cuid())
     name           String
-    amount         Int
+    cost           Int
+    picture        String
+    description    String
     Organization   Organization? @relation(fields: [organizationId], references: [id])
     organizationId String?
 }

@@ -10,7 +10,9 @@ const session = getServerAuthSession();
 export async function createProduct(
   userId: string,
   name: string,
-  amount: number,
+  cost: number,
+  picture: string,
+  description: string,
 ): Promise<string | null> {
   // Fetch the user from the database using their id
   const user: User | null = await db.user.findUnique({
@@ -28,7 +30,9 @@ export async function createProduct(
     await db.products.create({
       data: {
         name: name,
-        amount: amount,
+        cost: cost,
+        picture: picture,
+        description: description,
         Organization: {
           connect: { id: organizationId },
         },
