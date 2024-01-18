@@ -62,6 +62,16 @@ const Navbar = async () => {
               </Link>
             )}
           </ul>
+          {/* <ul className="flex flex-row">
+            {role === "organizer" && (
+              <Link
+                href="#"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
+              >
+                <ConnectButton />
+              </Link>
+            )}
+          </ul> */}
           <ul className="flex flex-row md:hidden">
             <li>
               <a
