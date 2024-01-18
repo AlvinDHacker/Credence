@@ -17,9 +17,14 @@ export default function Wallet() {
     Injected: 'injected.png'
   }
 
-  useEffect(()=>{
-    setIsOpen(account.status != 'connected')
-  },[account])
+  // useLayoutEffect(()=>{
+  //   setIsOpen(account.status != 'connected')
+  // },[account])
+
+  // useLayoutEffect(()=>{
+  //   setIsOpen(account.status != 'connected')
+  // },[account])
+
 
   function closeModal() {
     setIsOpen(false);
