@@ -18,15 +18,30 @@ const ConfirmationDialog: React.FC = () => {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
-      <div className="rounded-md bg-white p-8 shadow-md">
+    <>
+     <div className="mx-auto mt-5 w-[80%]">
+      <h2 className="mb-3  py-10 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Verify once to become a User on Credence
+      </h2>
+      <div className="grid gap-3 md:grid-cols-3">
+        <div className="grid gap-3">
+          <div>
+            <img
+              className="h-auto max-w-full rounded-lg"
+              src="/user.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+        <div className="col-span-2 mx-10">
+        <div className="rounded-md bg-white p-8 shadow-md">
         <h2 className="mb-4 text-xl font-bold text-gray-700">
-          Do you want to proceed?
+          Do you wish to Proceed as a User ?
         </h2>
         <div className="flex justify-end space-x-4">
           <button
             onClick={handleYesClick}
-            className="flex items-center rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
+            className="flex items-center rounded bg-green-500 px-4 py-2 text-white hover:bg-green-600"
           >
             <CheckCircle className="mr-2" /> Yes
           </button>
@@ -38,7 +53,15 @@ const ConfirmationDialog: React.FC = () => {
           </button>
         </div>
       </div>
+        </div>
+      </div>
     </div>
+
+{/* 
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100">
+      
+    </div> */}
+    </>
   );
 };
 
