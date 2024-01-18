@@ -4,7 +4,7 @@ import { ShoppingCart } from "lucide-react";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { createWarehouse } from "../api/createWarehouse";
+import { createVehicle } from "../api/createVehicle";
 import { getServerAuthSession } from "~/server/auth";
 import { uid } from "../api/authsx";
 import { Factory } from "lucide-react";
@@ -37,10 +37,10 @@ const AddVehicle = () => {
   const onSubmit = async (data: FieldValues) => {
     // Call your createWarehouse function here
     if (sessionValue && typeof sessionValue === "string") {
-      const result = await createWarehouse(
+      const result = await createVehicle(
         sessionValue,
         data.name as string,
-        data.location as string,
+        data. as string,
       );
       console.log(result);
     }
@@ -92,50 +92,11 @@ const AddVehicle = () => {
                 {errors.name.message}
               </p>
             )}
-
-            <label
-              className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-              htmlFor="file_input"
-            >
-              Insurance
-            </label>
-            <input
-              {...register("name")}
-              id="file_input"
-              type="file"
-              placeholder="Name"
-              className="mb-3 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 py-2 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
-            />
-            {typeof errors.name?.message === "string" && (
-              <p className="text-xs italic text-red-500">
-                {errors.name.message}
-              </p>
-            )}
-
             <label
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               htmlFor="file_input"
             >
               Registration Certificate
-            </label>
-            <input
-              {...register("name")}
-              id="file_input"
-              type="file"
-              placeholder="Name"
-              className="mb-3 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 py-2 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
-            />
-            {typeof errors.name?.message === "string" && (
-              <p className="text-xs italic text-red-500">
-                {errors.name.message}
-              </p>
-            )}
-
-            <label
-              className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-              htmlFor="file_input"
-            >
-              Vehicle Permit
             </label>
             <input
               {...register("name")}
@@ -187,27 +148,9 @@ const AddVehicle = () => {
                 {errors.name.message}
               </p>
             )}
-
-            {/* <label
-                className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-                htmlFor="location"
-              >
-                Location
-              </label>
-              <input
-                {...register("location")}
-                className="mb-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                type="text"
-                placeholder="Location"
-              />
-              {typeof errors.location?.message === "string" && (
-                <p className="text-xs italic text-red-500">
-                  {errors.location.message}
-                </p>
-              )} */}
             <button
               type="submit"
-              className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto"
             >
               Add Product
             </button>
