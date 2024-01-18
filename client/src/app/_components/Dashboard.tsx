@@ -13,8 +13,30 @@ import {
   Weight,
 } from "lucide-react";
 import React from "react";
+import { getServerAuthSession } from "~/server/auth";
+import { getOrganizationDetails } from "../api/getOrgDetails";
+import { getUserOrganizationId } from "../api/getOrganizer";
 
-const Dashboard = () => {
+const Dashboard = async () => {
+  const session = await getServerAuthSession();
+  let organizationId: string | null | undefined;
+  let numOfWarehouses: number | undefined;
+  let numOfVehicles: number | undefined;
+
+  if (session !== null) {
+    organizationId = await getUserOrganizationId(session.user.id);
+    if (typeof organizationId === "string") {
+      const organization = await getOrganizationDetails(organizationId);
+      if (organization) {
+        numOfWarehouses = organization.warehouses.length;
+        numOfVehicles = organization.vehicles.length;
+      }
+    }
+  } else {
+    // Handle the case when session or session.user.id is null
+    // For example, set organizationId to a default value or throw an error
+  }
+
   return (
     <div className=" mx-auto w-[80%] ">
       <h1 className="mb-3 text-2xl font-bold tracking-tight text-gray-900">
@@ -42,23 +64,8 @@ const Dashboard = () => {
           <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
           <div className="chart-container relative flex w-full flex-row gap-3">
             <h5 className=" w-full text-5xl font-bold text-gray-900">
-              40 <span className="text-lg font-light">Warehouses</span>
-            </h5>
-          </div>
-        </div>
-
-        <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
-          <div className="flex justify-between">
-            <h2 className="pb-1 text-lg font-semibold text-gray-500">
-              Warehouse Usage
-            </h2>
-            <PackageOpen />
-          </div>
-          <div className="my-1"></div>
-          <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
-          <div className="chart-container relative flex w-full flex-row gap-3">
-            <h5 className="w-full text-5xl font-bold text-gray-900">
-              92% <span className="text-lg font-light">of 100</span>
+              {numOfWarehouses}
+              <span className="text-lg font-light">Warehouses</span>
             </h5>
           </div>
         </div>
@@ -68,13 +75,29 @@ const Dashboard = () => {
             <h2 className="pb-1 text-lg font-semibold text-gray-500">
               No. of Vehicles
             </h2>
+            <PackageOpen />
+          </div>
+          <div className="my-1"></div>
+          <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+          <div className="chart-container relative flex w-full flex-row gap-3">
+            <h5 className="w-full text-5xl font-bold text-gray-900">
+              {numOfVehicles} <span className="text-lg font-light"></span>
+            </h5>
+          </div>
+        </div>
+
+        <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+          <div className="flex justify-between">
+            <h2 className="pb-1 text-lg font-semibold text-gray-500">
+              Organization ID
+            </h2>
             <Truck />
           </div>
           <div className="my-1"></div>
           <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
           <div className="chart-container relative flex w-full flex-row gap-3">
             <h5 className="w-full text-5xl font-bold text-gray-900">
-              100 <span className="text-lg font-light">Vehicles</span>
+              {organizationId} <span className="text-lg font-light"></span>
             </h5>
           </div>
         </div>
@@ -90,7 +113,7 @@ const Dashboard = () => {
           <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
           <div className="chart-container relative w-full">
             <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
-              3,000 <span className="text-lg font-light">Employees</span>
+              3,000 <span className="text-lg font-light"></span>
             </h5>
           </div>
         </div>
