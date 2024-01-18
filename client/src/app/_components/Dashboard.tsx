@@ -13,12 +13,32 @@ import {
   Weight,
 } from "lucide-react";
 import React from "react";
-import FixedNav from "./FixedNav";
+import { getServerAuthSession } from "~/server/auth";
+import { getOrganizationDetails } from "../api/getOrgDetails";
+import { getUserOrganizationId } from "../api/getOrganizer";
 
-const Dashboard = () => {
+const Dashboard = async () => {
+  const session = await getServerAuthSession();
+  let organizationId: string | null | undefined;
+  let numOfWarehouses: number | undefined;
+  let numOfVehicles: number | undefined;
+
+  if (session !== null) {
+    organizationId = await getUserOrganizationId(session.user.id);
+    if (typeof organizationId === "string") {
+      const organization = await getOrganizationDetails(organizationId);
+      if (organization) {
+        numOfWarehouses = organization.warehouses.length;
+        numOfVehicles = organization.vehicles.length;
+      }
+    }
+  } else {
+    // Handle the case when session or session.user.id is null
+    // For example, set organizationId to a default value or throw an error
+  }
+
   return (
     <div className=" mx-auto w-[80%] ">
-      <FixedNav />
       <h1 className="mb-3 text-2xl font-bold tracking-tight text-gray-900">
         Dashboard
       </h1>
@@ -44,23 +64,8 @@ const Dashboard = () => {
           <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
           <div className="chart-container relative flex w-full flex-row gap-3">
             <h5 className=" w-full text-5xl font-bold text-gray-900">
-              40 <span className="text-lg font-light">Warehouses</span>
-            </h5>
-          </div>
-        </div>
-
-        <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
-          <div className="flex justify-between">
-            <h2 className="pb-1 text-lg font-semibold text-gray-500">
-              Warehouse Usage
-            </h2>
-            <PackageOpen />
-          </div>
-          <div className="my-1"></div>
-          <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
-          <div className="chart-container relative flex w-full flex-row gap-3">
-            <h5 className="w-full text-5xl font-bold text-gray-900">
-              92% <span className="text-lg font-light">of 100</span>
+              {numOfWarehouses}
+              <span className="px-3 text-lg font-light">Warehouses</span>
             </h5>
           </div>
         </div>
@@ -76,7 +81,23 @@ const Dashboard = () => {
           <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
           <div className="chart-container relative flex w-full flex-row gap-3">
             <h5 className="w-full text-5xl font-bold text-gray-900">
-              100 <span className="text-lg font-light">Vehicles</span>
+              {numOfVehicles} <span className="text-lg font-light">Vehicles</span>
+            </h5>
+          </div>
+        </div>
+
+        <div className="flex-1 rounded-lg bg-white p-4 shadow-md">
+          <div className="flex justify-between">
+            <h2 className="pb-1 text-lg font-semibold text-gray-500">
+              Organization ID
+            </h2>
+            <PackageOpen />
+          </div>
+          <div className="my-1"></div>
+          <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+          <div className="chart-container relative flex w-full flex-row gap-3">
+            <h5 className="w-full text-xl font-bold text-gray-900">
+              {organizationId} <span className="text-lg font-light"></span>
             </h5>
           </div>
         </div>
@@ -133,66 +154,66 @@ const Dashboard = () => {
 
           <div className="mt-8 rounded-lg bg-white p-4 shadow-md">
             <a href="/orders">
-            <h2 className="pb-4 text-lg font-semibold text-gray-500">
-              Latest Orders
-            </h2>
-            <div className="my-1"></div>
-            <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
-            <div className="light relative overflow-x-auto rounded-md">
-              <table className="w-full text-left text-sm text-gray-500 rtl:text-right ">
-                <thead className="bg-gray-50 text-xs uppercase text-gray-700">
-                  <tr>
-                    <th scope="col" className="px-6 py-3">
-                      Product name
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Color
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Category
-                    </th>
-                    <th scope="col" className="px-6 py-3">
-                      Price
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-b bg-white ">
-                    <th
-                      scope="row"
-                      className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
-                    >
-                      Apple MacBook Pro 17"
-                    </th>
-                    <td className="px-6 py-4">Silver</td>
-                    <td className="px-6 py-4">Laptop</td>
-                    <td className="px-6 py-4">$2999</td>
-                  </tr>
-                  <tr className="border-b bg-white ">
-                    <th
-                      scope="row"
-                      className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
-                    >
-                      Microsoft Surface Pro
-                    </th>
-                    <td className="px-6 py-4">White</td>
-                    <td className="px-6 py-4">Laptop PC</td>
-                    <td className="px-6 py-4">$1999</td>
-                  </tr>
-                  <tr className="bg-white">
-                    <th
-                      scope="row"
-                      className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
-                    >
-                      Magic Mouse 2
-                    </th>
-                    <td className="px-6 py-4">Black</td>
-                    <td className="px-6 py-4">Accessories</td>
-                    <td className="px-6 py-4">$99</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+              <h2 className="pb-4 text-lg font-semibold text-gray-500">
+                Latest Orders
+              </h2>
+              <div className="my-1"></div>
+              <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+              <div className="light relative overflow-x-auto rounded-md">
+                <table className="w-full text-left text-sm text-gray-500 rtl:text-right ">
+                  <thead className="bg-gray-50 text-xs uppercase text-gray-700">
+                    <tr>
+                      <th scope="col" className="px-6 py-3">
+                        Product name
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Color
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Category
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Price
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr className="border-b bg-white ">
+                      <th
+                        scope="row"
+                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
+                      >
+                        Apple MacBook Pro 17"
+                      </th>
+                      <td className="px-6 py-4">Silver</td>
+                      <td className="px-6 py-4">Laptop</td>
+                      <td className="px-6 py-4">$2999</td>
+                    </tr>
+                    <tr className="border-b bg-white ">
+                      <th
+                        scope="row"
+                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
+                      >
+                        Microsoft Surface Pro
+                      </th>
+                      <td className="px-6 py-4">White</td>
+                      <td className="px-6 py-4">Laptop PC</td>
+                      <td className="px-6 py-4">$1999</td>
+                    </tr>
+                    <tr className="bg-white">
+                      <th
+                        scope="row"
+                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
+                      >
+                        Magic Mouse 2
+                      </th>
+                      <td className="px-6 py-4">Black</td>
+                      <td className="px-6 py-4">Accessories</td>
+                      <td className="px-6 py-4">$99</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </a>
           </div>
 

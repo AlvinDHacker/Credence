@@ -4,7 +4,7 @@ import { ShoppingCart } from "lucide-react";
 import { FieldValues, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { createWarehouse } from "../api/createWarehouse";
+import { createProduct } from "../api/createProduct";
 import { getServerAuthSession } from "~/server/auth";
 import { uid } from "../api/authsx";
 import { Factory } from "lucide-react";
@@ -12,7 +12,9 @@ import { Factory } from "lucide-react";
 // Define your form schema using Zod
 const schema = z.object({
   name: z.string(),
-  location: z.string(),
+  cost: z.number(),
+  picture: z.string().url(),
+  description: z.string(),
 });
 
 const AddProducts = () => {
@@ -21,6 +23,7 @@ const AddProducts = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset, // Add this line
   } = useForm({
     resolver: zodResolver(schema),
   });
@@ -37,18 +40,21 @@ const AddProducts = () => {
   const onSubmit = async (data: FieldValues) => {
     // Call your createWarehouse function here
     if (sessionValue && typeof sessionValue === "string") {
-      const result = await createWarehouse(
+      const result = await createProduct(
         sessionValue,
         data.name as string,
-        data.location as string,
+        data.cost as number,
+        data.picture as string,
+        data.description as string,
       );
       console.log(result);
+      reset();
     }
   };
 
   return (
     <div className="mx-auto w-[80%]">
-      <div className="grid md:grid-cols-3 gap-3">
+      <div className="grid gap-3 md:grid-cols-3">
         <div className="grid gap-3">
           <div>
             <img
@@ -66,13 +72,13 @@ const AddProducts = () => {
             </a>
           </div>
         </div>
-        <div className="md:col-span-2 grid md:w-[90%] mx-auto">
-        <h2 className="pb-1 mx-5 text-center text-lg font-bold text-gray-500">
-          Add Your Products
-        </h2>
+        <div className="mx-auto grid md:col-span-2 md:w-[90%]">
+          <h2 className="mx-5 pb-1 text-center text-lg font-bold text-gray-500">
+            Add Your Products
+          </h2>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className=" mb-4  rounded bg-white md:px-8 pb-8 pt-6"
+            className=" mb-4  rounded bg-white pb-8 pt-6 md:px-8"
           >
             <label
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
@@ -95,6 +101,25 @@ const AddProducts = () => {
 
             <label
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+              htmlFor="picture"
+            >
+              Picture URL
+            </label>
+            <input
+              {...register("picture")}
+              className="mb-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+              id="picture"
+              type="text"
+              placeholder="Name"
+            />
+            {typeof errors.picture?.message === "string" && (
+              <p className="text-xs italic text-red-500">
+                {errors.picture.message}
+              </p>
+            )}
+
+            {/* <label
+              className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               htmlFor="file_input"
             >
               Upload file
@@ -104,72 +129,54 @@ const AddProducts = () => {
               id="file_input"
               type="file"
               placeholder="Name"
-              className="block w-full py-2 text-sm text-gray-900 mb-3 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+              className="mb-3 block w-full cursor-pointer rounded-lg border border-gray-300 bg-gray-50 py-2 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"
             />
             {typeof errors.name?.message === "string" && (
               <p className="text-xs italic text-red-500">
                 {errors.name.message}
               </p>
-            )}
+            )} */}
 
             <label
+              htmlFor="description"
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-              htmlFor="name"
             >
               Product Description
             </label>
             <input
-              {...register("name")}
+              {...register("description")}
+              id="description"
+              placeholder="Description"
               className="mb-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-              id="name"
-              type="text"
-              placeholder="Name"
             />
-            {typeof errors.name?.message === "string" && (
+            {typeof errors.description?.message === "string" && (
               <p className="text-xs italic text-red-500">
-                {errors.name.message}
+                {errors.description.message}
               </p>
             )}
 
             <label
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-              htmlFor="name"
+              htmlFor="cost"
             >
               Product Cost
             </label>
             <input
-              {...register("name")}
+              {...register("cost", { valueAsNumber: true })}
+              id="cost"
+              type="number"
+              placeholder="Cost"
               className="mb-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-              id="name"
-              type="text"
-              placeholder="$ 10"
             />
-            {typeof errors.name?.message === "string" && (
+            {typeof errors.cost?.message === "string" && (
               <p className="text-xs italic text-red-500">
-                {errors.name.message}
+                {errors.cost.message}
               </p>
             )}
 
-            {/* <label
-              className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-              htmlFor="location"
-            >
-              Location
-            </label>
-            <input
-              {...register("location")}
-              className="mb-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-              type="text"
-              placeholder="Location"
-            />
-            {typeof errors.location?.message === "string" && (
-              <p className="text-xs italic text-red-500">
-                {errors.location.message}
-              </p>
-            )} */}
             <button
               type="submit"
-              className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto"
             >
               Add Product
             </button>

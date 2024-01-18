@@ -12,6 +12,7 @@ export async function createVehicle(
   userId: string,
   name: string,
   mileage: number,
+  certificateUrl: string,
 ): Promise<string | null> {
   // Fetch the user from the database using their id
   const user: User | null = await db.user.findUnique({
@@ -30,6 +31,7 @@ export async function createVehicle(
       data: {
         name: name,
         mileage: mileage,
+        Registration: certificateUrl,
         Organization: {
           connect: { id: organizationId },
         },
@@ -42,7 +44,7 @@ export async function createVehicle(
       data: { role: "organizer" },
     });
 
-    return "Warehouse created and user role updated successfully";
+    return "Vehicle created, certificate uploaded and user role updated successfully";
   }
 
   // If the user was not found, return null
