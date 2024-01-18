@@ -11,18 +11,17 @@ export default function Wallet() {
   const { disconnect } = useDisconnect();
   let [isOpen, setIsOpen] = useState(false);
   const walletImgs = {
-    MetaMask: '/metamask.png',
-    WalletConnect: '/walletconnect.png',
-    "Coinbase Wallet": '/coinbase.png',
-    Injected: '/injected.png'
-  }
+    MetaMask: "/metamask.png",
+    WalletConnect: "/walletconnect.png",
+    "Coinbase Wallet": "/coinbase.png",
+    Injected: "/injected.png",
+  };
 
-  useEffect(()=>{
-    if(status == 'success'){
-      setIsOpen(false)
+  useEffect(() => {
+    if (status == "success") {
+      setIsOpen(false);
     }
-  },[status])
-
+  }, [status]);
 
   function closeModal() {
     setIsOpen(false);
@@ -34,21 +33,24 @@ export default function Wallet() {
 
   return (
     <>
-      <div className="fixed inset-0 flex items-center justify-center">
-      {account.status != 'connected' ? <button
-        onClick={openModal}
-                href="#"
-                className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
-              >
-                Connect Wallet
-              </button> : <button
-        onClick={disconnect}
-                href="#"
-                className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
-              >
-                Disconnect Wallet
-              </button>}
-        
+      <div className="">
+        {account.status != "connected" ? (
+          <button
+            onClick={openModal}
+            href="#"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
+          >
+            Connect Wallet
+          </button>
+        ) : (
+          <button
+            onClick={disconnect}
+            href="#"
+            className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
+          >
+            Disconnect Wallet
+          </button>
+        )}
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -86,16 +88,20 @@ export default function Wallet() {
                   <div className="mb-5 flex justify-center text-3xl font-bold">
                     Connect Wallet
                   </div>
-                  <div className="grid grid-cols-2 gap-5 mt-10">
+                  <div className="mt-10 grid grid-cols-2 gap-5">
                     {connectors.map((connector) => {
                       return (
                         <button
-                        key={connector.id}
-                        onClick={() => connect({ connector })}
+                          key={connector.id}
+                          onClick={() => connect({ connector })}
                           type="button"
-                          className="shadow-lg mb-2 me-2 inline-flex items-center rounded-lg border border-2 border-black bg-white px-5 py-3 text-center text-lg text-sm font-medium text-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                          className="mb-2 me-2 inline-flex items-center rounded-lg border border-2 border-black bg-white px-5 py-3 text-center text-lg text-sm font-medium text-gray-900 shadow-lg hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                         >
-                          <img className="mr-2 h-8" src={walletImgs[connector.name]} alt="" />
+                          <img
+                            className="mr-2 h-8"
+                            src={walletImgs[connector.name]}
+                            alt=""
+                          />
                           {connector.name.split(" ")[0]}
                         </button>
                       );

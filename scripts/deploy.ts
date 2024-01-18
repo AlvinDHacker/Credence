@@ -4,6 +4,7 @@ async function main() {
 	const instance = await ethers.deployContract("Tracker");
 
 	await instance.waitForDeployment();
+	console.log(`Counter contract deployed to ${instance.target}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

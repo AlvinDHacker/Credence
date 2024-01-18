@@ -29,6 +29,7 @@
     "@trpc/server": "^10.43.6",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "ethers": "^6.10.0",
     "hardhat": "^2.19.4",
     "lucide-react": "^0.311.0",
     "next": "^14.0.4",
@@ -41,6 +42,7 @@
     "react-to-print": "^2.14.15",
     "server-only": "^0.0.1",
     "superjson": "^2.2.1",
+    "tailwindcss-animate": "^1.0.7",
     "viem": "^2.2.0",
     "wagmi": "^2.2.1",
     "zod": "^3.22.4"
