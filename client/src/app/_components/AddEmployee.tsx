@@ -15,7 +15,7 @@ const schema = z.object({
   location: z.string(),
 });
 
-const AddProducts = () => {
+const AddEmployee = () => {
   const [sessionValue, setSessionValue] = useState<string | null>(null);
   const {
     register,
@@ -48,7 +48,7 @@ const AddProducts = () => {
 
   return (
     <div className="mx-auto w-[80%]">
-      <div className="grid md:grid-cols-3 gap-3">
+      <div className="grid gap-3 md:grid-cols-3">
         <div className="grid gap-3">
           <div>
             <img
@@ -57,28 +57,20 @@ const AddProducts = () => {
               alt=""
             />
           </div>
-          <div className="flex items-center justify-between">
-            <span className="my-3 text-3xl font-bold text-gray-900 dark:text-white">
-              $599
-            </span>
-            <a href="#" className="rounded-full bg-yellow-500 p-3">
-              <ShoppingCart />
-            </a>
-          </div>
         </div>
-        <div className="md:col-span-2 grid md:w-[90%] mx-auto">
-        <h2 className="pb-1 mx-5 text-center text-lg font-bold text-gray-500">
-          Add Your Products
-        </h2>
+        <div className="grid md:col-span-2 md:w-[90%]">
+          <h2 className="mx-5 pb-1 text-center text-lg font-bold text-gray-500">
+            Add Your Employee
+          </h2>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className=" mb-4  rounded bg-white md:px-8 pb-8 pt-6"
+            className=" mb-4 rounded bg-white pb-8 pt-6 md:px-8"
           >
             <label
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               htmlFor="name"
             >
-              Product Name
+              Employee Name
             </label>
             <input
               {...register("name")}
@@ -93,7 +85,7 @@ const AddProducts = () => {
               </p>
             )}
 
-            <label
+            {/* <label
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               htmlFor="file_input"
             >
@@ -110,20 +102,20 @@ const AddProducts = () => {
               <p className="text-xs italic text-red-500">
                 {errors.name.message}
               </p>
-            )}
+            )} */}
 
             <label
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               htmlFor="name"
             >
-              Product Description
+              Employee User Id
             </label>
             <input
               {...register("name")}
               className="mb-5 block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               id="name"
               type="text"
-              placeholder="Name"
+              placeholder="Discord User Id"
             />
             {typeof errors.name?.message === "string" && (
               <p className="text-xs italic text-red-500">
@@ -131,7 +123,7 @@ const AddProducts = () => {
               </p>
             )}
 
-            <label
+            {/* <label
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
               htmlFor="name"
             >
@@ -148,7 +140,7 @@ const AddProducts = () => {
               <p className="text-xs italic text-red-500">
                 {errors.name.message}
               </p>
-            )}
+            )} */}
 
             {/* <label
               className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
@@ -171,7 +163,7 @@ const AddProducts = () => {
               type="submit"
               className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              Add Product
+              Add Employee
             </button>
           </form>
         </div>
@@ -180,4 +172,4 @@ const AddProducts = () => {
   );
 };
 
-export default AddProducts;
+export default AddEmployee;
