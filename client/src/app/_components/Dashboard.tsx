@@ -65,7 +65,7 @@ const Dashboard = async () => {
           <div className="chart-container relative flex w-full flex-row gap-3">
             <h5 className=" w-full text-5xl font-bold text-gray-900">
               {numOfWarehouses}
-              <span className="text-lg font-light">Warehouses</span>
+              <span className="px-3 text-lg font-light">Warehouses</span>
             </h5>
           </div>
         </div>
@@ -75,13 +75,13 @@ const Dashboard = async () => {
             <h2 className="pb-1 text-lg font-semibold text-gray-500">
               No. of Vehicles
             </h2>
-            <PackageOpen />
+            <Truck />
           </div>
           <div className="my-1"></div>
           <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
           <div className="chart-container relative flex w-full flex-row gap-3">
             <h5 className="w-full text-5xl font-bold text-gray-900">
-              {numOfVehicles} <span className="text-lg font-light"></span>
+              {numOfVehicles} <span className="text-lg font-light">Vehicles</span>
             </h5>
           </div>
         </div>
@@ -91,12 +91,12 @@ const Dashboard = async () => {
             <h2 className="pb-1 text-lg font-semibold text-gray-500">
               Organization ID
             </h2>
-            <Truck />
+            <PackageOpen />
           </div>
           <div className="my-1"></div>
           <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
           <div className="chart-container relative flex w-full flex-row gap-3">
-            <h5 className="w-full text-5xl font-bold text-gray-900">
+            <h5 className="w-full text-xl font-bold text-gray-900">
               {organizationId} <span className="text-lg font-light"></span>
             </h5>
           </div>
@@ -113,7 +113,7 @@ const Dashboard = async () => {
           <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
           <div className="chart-container relative w-full">
             <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
-              3,000 <span className="text-lg font-light"></span>
+              3,000 <span className="text-lg font-light">Employees</span>
             </h5>
           </div>
         </div>
