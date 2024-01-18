@@ -23,6 +23,7 @@ const AddProducts = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset, // Add this line
   } = useForm({
     resolver: zodResolver(schema),
   });
@@ -47,6 +48,7 @@ const AddProducts = () => {
         data.description as string,
       );
       console.log(result);
+      reset();
     }
   };
 

@@ -21,6 +21,7 @@ const AddVehicle = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset, // Add this line
   } = useForm({
     resolver: zodResolver(schema),
   });
@@ -45,6 +46,7 @@ const AddVehicle = () => {
         data.certificateUrl as string,
       );
       console.log(result);
+      reset();
     }
   };
 
