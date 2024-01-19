@@ -30,7 +30,7 @@
     "@trpc/server": "^10.43.6",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "fs": "^0.0.1-security",
+    "ethers": "^6.10.0",
     "hardhat": "^2.19.4",
     "lucide-react": "^0.311.0",
     "net": "^1.0.2",

@@ -1,5 +1,3 @@
-"use client";
-import { useState } from "react";
 import Dashboard from "../../_components/Dashboard";
 import Navbar from "../../_components/Navbar";
 

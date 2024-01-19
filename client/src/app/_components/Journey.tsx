@@ -51,6 +51,7 @@ const Journey = ({ id }) => {
     );
 
     const tJourney = tracker.track(id);
+    console.log(tJourney);
     setJourney(tJourney);
   };
 

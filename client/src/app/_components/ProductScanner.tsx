@@ -20,7 +20,7 @@ export default function ProductScanner() {
           className="relative aspect-square w-3/4 rounded-3xl bg-white
         "
         >
-          <div className="scan-line"></div>\
+          <div className="scan-line"></div>
           <QrReader
             className="h-full rounded-3xl object-fill"
             delay={100}
