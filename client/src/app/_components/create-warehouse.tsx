@@ -17,6 +17,7 @@ const schema = z.object({
 
 export default function WarehouseForm() {
   const [sessionValue, setSessionValue] = useState<string | null>(null);
+  const [wId, setwId] = useState(null);
   const {
     register,
     handleSubmit,
@@ -45,6 +46,7 @@ export default function WarehouseForm() {
       );
       if (warehouseId) {
         console.log(`Warehouse created with id: ${warehouseId}`);
+        setwId(`w#${warehouseId}`);
       } else {
         console.log("Warehouse creation failed");
       }
@@ -124,6 +126,7 @@ export default function WarehouseForm() {
           </div>
         </div>
       </div>
+      {wId && <GenerateQR data={wId} />}
     </>
   );
 }
