@@ -72,7 +72,7 @@ export default function StatusScanner() {
         var long = pos.coords.longitude;
       });
 
-      updateStatus(cData.text, message, lat.toString(), long.toString());
+      // updateStatus(cData.text, message, lat.toString(), long.toString());
     }
   };
 
