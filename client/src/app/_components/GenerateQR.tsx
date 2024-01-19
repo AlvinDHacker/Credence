@@ -9,7 +9,7 @@ interface QRData {
 }
 
 export default function GenerateQR({ data }: QRData) {
-  let [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(true);
   const qr = useRef(null);
 
   function closeModal() {
@@ -68,24 +68,24 @@ export default function GenerateQR({ data }: QRData) {
                     Success !
                   </div>
                   <div ref={qr} className="my-8 h-full">
-                    <p className="flex justify-center h-full items-center text-sm text-gray-500">
+                    <p className="flex h-full items-center justify-center text-sm text-gray-500">
                       <QRCode value={data} />
                     </p>
                   </div>
 
                   <div className="mt-2 flex justify-center">
-                  <ReactToPrint
-                    trigger={() => (
+                    <ReactToPrint
+                      trigger={() => (
                         <button
                           type="button"
                           className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-6 py-2 text-xl font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                         >
                           Print
                         </button>
-                    )}
-                    content={() => qr.current}
+                      )}
+                      content={() => qr.current}
                     />
-                    </div>
+                  </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
