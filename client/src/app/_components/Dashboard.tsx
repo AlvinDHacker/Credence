@@ -16,6 +16,7 @@ import React from "react";
 import { getServerAuthSession } from "~/server/auth";
 import { getOrganizationDetails } from "../api/getOrgDetails";
 import { getUserOrganizationId } from "../api/getOrganizer";
+import { getOrganizationOrders } from "../api/getAllOrders";
 
 const Dashboard = async () => {
   const products = [
@@ -78,11 +79,20 @@ const Dashboard = async () => {
   let organizationId: string | null | undefined;
   let numOfWarehouses: number | undefined;
   let numOfVehicles: number | undefined;
+  let orders:
+    | {
+        id: string;
+        userId: string;
+        productId: string;
+      }[]
+    | null;
 
   if (session !== null) {
     organizationId = await getUserOrganizationId(session.user.id);
     if (typeof organizationId === "string") {
       const organization = await getOrganizationDetails(organizationId);
+      orders = await getOrganizationOrders(organizationId);
+      console.log(orders);
       if (organization) {
         numOfWarehouses = organization.warehouses.length;
         numOfVehicles = organization.vehicles.length;
@@ -221,53 +231,29 @@ const Dashboard = async () => {
                   <thead className="bg-gray-50 text-xs uppercase text-gray-700">
                     <tr>
                       <th scope="col" className="px-6 py-3">
-                        Product name
+                        Order Id
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Color
+                        UserID
                       </th>
                       <th scope="col" className="px-6 py-3">
-                        Category
-                      </th>
-                      <th scope="col" className="px-6 py-3">
-                        Price
+                        ID
                       </th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b bg-white ">
-                      <th
-                        scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
-                      >
-                        Apple MacBook Pro 17"
-                      </th>
-                      <td className="px-6 py-4">Silver</td>
-                      <td className="px-6 py-4">Laptop</td>
-                      <td className="px-6 py-4">$2999</td>
-                    </tr>
-                    <tr className="border-b bg-white ">
-                      <th
-                        scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
-                      >
-                        Microsoft Surface Pro
-                      </th>
-                      <td className="px-6 py-4">White</td>
-                      <td className="px-6 py-4">Laptop PC</td>
-                      <td className="px-6 py-4">$1999</td>
-                    </tr>
-                    <tr className="bg-white">
-                      <th
-                        scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
-                      >
-                        Magic Mouse 2
-                      </th>
-                      <td className="px-6 py-4">Black</td>
-                      <td className="px-6 py-4">Accessories</td>
-                      <td className="px-6 py-4">$99</td>
-                    </tr>
+                    {orders?.map((order) => (
+                      <tr key={order.id} className="border-b bg-white ">
+                        <th
+                          scope="row"
+                          className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
+                        >
+                          {order.userId}
+                        </th>
+                        <td className="px-6 py-4">{order.productId}</td>
+                        <td className="px-6 py-4">${order.id}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -411,7 +397,7 @@ const Dashboard = async () => {
                     </tr>
                   </thead>
                   <tbody>
-                  {vehicles.map((item, i) => {
+                    {vehicles.map((item, i) => {
                       return (
                         <tr key={i} className="border-b bg-white ">
                           <th
