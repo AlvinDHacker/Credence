@@ -1,5 +1,5 @@
 "use client";
-import { Home, PlusCircle, Scroll } from "lucide-react";
+import { Home, PlusCircle, ScanText, Scroll } from "lucide-react";
 import React, { useState, Fragment, useRef } from "react";
 import QRCode from "react-qr-code";
 import { Dialog, Transition } from "@headlessui/react";
@@ -29,7 +29,9 @@ const FixedNav = () => {
         <a href="/orders">
           <Scroll />
         </a>
-        {/* <User2/> */}
+        <a href="/orders">
+          <ScanText />
+        </a>
       </div>
 
       <>
