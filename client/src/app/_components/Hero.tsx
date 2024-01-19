@@ -16,7 +16,7 @@ const Hero = () => {
         {/* <div className="absolute left-0 top-0 z-0 h-full w-full bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-900"></div> */}
       </section>
 
-      <div className="mb-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <div className="mb-10 grid grid-cols-2 gap-4 md:grid-cols-4 w-[80%] mx-auto">
         <div className="grid gap-4">
           <figure className="group relative max-w-sm cursor-pointer grayscale filter transition-all duration-300 hover:grayscale-0">
             <a href="#">
