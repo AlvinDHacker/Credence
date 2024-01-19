@@ -1,10 +1,12 @@
 "use client";
 import { Map, ShoppingBag, Store } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import contractABI from "../../../build/artifacts/contracts/Tracker.sol/Tracker.json";
+import { AlchemyProvider, Contract, ethers } from "ethers";
 
-const Journey = () => {
+const Journey = ({ id }) => {
   const [verified, setVerified] = useState(true);
-  const journey = [
+  const [journey, setJourney] = useState([
     {
       truck: false,
       place: "Factory",
@@ -25,7 +27,33 @@ const Journey = () => {
       truck: false,
       place: "Shop",
     },
-  ];
+  ]);
+
+  useEffect(() => {
+    getStatus(id);
+  }, []);
+
+  const getStatus = (id) => {
+    const provider = new AlchemyProvider(
+      "maticmum",
+      process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
+    );
+
+    const userWallet = new ethers.Wallet(
+      process.env.NEXT_PUBLIC_PRIVATE_KEY,
+      provider,
+    );
+
+    const tracker = new Contract(
+      process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+      contractABI.abi,
+      userWallet,
+    );
+
+    const tJourney = tracker.track(id);
+    setJourney(tJourney);
+  };
+
   return (
     <div className="mx-auto w-[80%]">
       <div className="flex flex-row justify-between">
