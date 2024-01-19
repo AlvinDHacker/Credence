@@ -2,32 +2,16 @@
 import React, { useState, useEffect } from "react";
 import QrReader from "react-qr-scanner";
 import contractABI from "../../../build/artifacts/contracts/Tracker.sol/Tracker.json";
-import {
-  useReadContract,
-  useWriteContract,
-  useWaitForTransactionReceipt,
-} from "wagmi";
 import { AlchemyProvider, Contract, ethers } from "ethers";
 
 interface scanData {
   text: string;
 }
 
-export default function StatusScanner() {
+export default function ProductScanner() {
   const [data, setData] = useState<string>();
-  const item = {
-    v: "vehicle",
-    w: "warehouse",
-    p: "product",
-  };
 
-  const { data: hash, writeContract } = useWriteContract();
-  const { data: journey } = useReadContract({
-    functionName: "track",
-    args: ["pId"],
-  });
-
-  const updateStatus = (name, desc, lat, long) => {
+  const getStatus = (id) => {
     const provider = new AlchemyProvider(
       "maticmum",
       process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
@@ -44,35 +28,12 @@ export default function StatusScanner() {
       userWallet,
     );
 
-    tracker.addStatus(name, desc, lat, long);
+    const journey = tracker.track(id);
   };
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async function (position) {
-      var pos = position;
-      console.log(pos);
-    });
-  }, []);
 
   const handleScan = (cData: scanData) => {
     if (cData) {
-      const [type, id] = cData.text.split("#");
-      const message =
-        type == "p"
-          ? "Product created"
-          : type == "w"
-            ? "Product moved to warehouse"
-            : type == "v"
-              ? "Product loaded in truck"
-              : "";
-
-      navigator.geolocation.getCurrentPosition(async function (position) {
-        var pos = position;
-        var lat = pos.coords.latitude;
-        var long = pos.coords.longitude;
-      });
-
-      updateStatus(cData.text, message, lat.toString(), long.toString());
+      getStatus(cData.text);
     }
   };
 
