@@ -257,13 +257,9 @@ const Dashboard = async () => {
                         <td className="px-6 py-4">{order.productId}</td>
                         <td className="px-6 py-4">${order.id}</td>
                         <td className="px-6 py-4">
-<<<<<<< HEAD
-                          <QrCode onClick={getQr} />
-=======
                           <Link href={`/organization/dashboard/${order.id}`}>
                             <QrCode />
                           </Link>
->>>>>>> b75a29f78b7822c68ccce6c1a34838d8094b03b2
                         </td>
                       </tr>
                     ))}
