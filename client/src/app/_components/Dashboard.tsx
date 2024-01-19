@@ -11,14 +11,16 @@ import {
   User2,
   Users2,
   Weight,
+  QrCode,
 } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { getServerAuthSession } from "~/server/auth";
 import { getOrganizationDetails } from "../api/getOrgDetails";
 import { getUserOrganizationId } from "../api/getOrganizer";
 import { getOrganizationOrders } from "../api/getAllOrders";
 
 const Dashboard = async () => {
+  const [oId, setoId] = useState(null);
   const products = [
     {
       ProdName: "Apple MacBook Pro 17",
@@ -239,6 +241,9 @@ const Dashboard = async () => {
                       <th scope="col" className="px-6 py-3">
                         ID
                       </th>
+                      <th scope="col" className="px-6 py-3">
+                        QR
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -252,6 +257,9 @@ const Dashboard = async () => {
                         </th>
                         <td className="px-6 py-4">{order.productId}</td>
                         <td className="px-6 py-4">${order.id}</td>
+                        <td className="px-6 py-4">
+                          <QrCode />
+                        </td>
                       </tr>
                     ))}
                   </tbody>

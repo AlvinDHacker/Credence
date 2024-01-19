@@ -9,7 +9,7 @@ const { API_URL, PRIVATE_KEY } = process.env;
 const hConfig: HardhatUserConfig = {
 	solidity: "0.8.19",
 	paths: {
-		artifacts: "./client/build/artifacts",
+		artifacts: "./client/artStore/artifacts",
 	},
 	networks: {
 		hardhat: {
