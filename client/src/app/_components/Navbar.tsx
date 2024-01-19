@@ -1,5 +1,5 @@
 // "use client";
-import { CheckCircle, User2, Waypoints } from "lucide-react";
+import { CheckCircle, LayoutDashboard, LogOut, User2, Waypoints } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { getServerAuthSession } from "~/server/auth";
@@ -65,10 +65,10 @@ const Navbar = async () => {
           <ul className="flex flex-row md:hidden">
             <li>
               <a
-                href="/verify-now"
+                href="/organization/dashboard"
                 className="block rounded px-1 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 "
               >
-                <CheckCircle />
+                <LayoutDashboard />
               </a>
             </li>
             <Link
@@ -76,14 +76,13 @@ const Navbar = async () => {
               className="block rounded px-3 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
             >
               {(await session) ? (
-                <div className="">
+                <div className="flex flex-row gap-3 my-2">
                   <Wallet />
                   <button
                     type="button"
-                    className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
+                    // className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
                   >
-                    <User2 />
-                    Sign Out
+                    <LogOut />
                   </button>
                 </div>
               ) : (
@@ -122,7 +121,7 @@ const Navbar = async () => {
                     href="/organization/dashboard"
                     className="my-2 block rounded px-3 py-2 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
                   >
-                    Verify your packages
+                    Dashboard
                   </Link>
                 )}
               </li>
