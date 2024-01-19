@@ -22,8 +22,8 @@ const UserHome = async () => {
       </section>
 
       <div className="mx-auto my-5 w-[80%]">
-        <div className="my-2 flex flex-row justify-between">
-        <form className="w-[80%]">
+        <div className="my-2 md:flex flex-row justify-between">
+        <form className="md:w-[80%]">
             <label
               htmlFor="default-search"
               className="sr-only mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -49,7 +49,7 @@ const UserHome = async () => {
               </button>
             </div>
           </form>
-          <div className="flex gap-3 p-1">
+          <div className="flex gap-3 md:p-1 p-5 ">
             <a href="#" className="rounded-full bg-yellow-500 p-3">
               <ShoppingCart />
             </a>
@@ -63,11 +63,11 @@ const UserHome = async () => {
         </div>
 
         <h2 className="pb-1 text-lg font-semibold text-gray-500">Products</h2>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid md:grid-cols-3 gap-3">
           {data?.map((item) => (
             <div
               key={item.id}
-              className="my-2 w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
+              className="relative my-2 w-full max-w-sm rounded-lg border border-gray-200 bg-white shadow dark:border-gray-700 dark:bg-gray-800"
             >
               <div>
                 <img
@@ -76,13 +76,14 @@ const UserHome = async () => {
                   alt={item.name}
                 />
               </div>
-              <div className="px-5 pb-5">
+              <div className="absolute w-full bottom-1">
+              <div className="px-5 w-full">
                 <a href="#">
                   <h5 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
                     {item.name}
                   </h5>
                 </a>
-                <div className="mb-5 mt-2.5 flex items-center justify-between">
+                <div className="mb-5 mt-1 flex items-center justify-between">
                   <p className="text-3xl font-semibold text-gray-900">
                   ₹{item.cost}
                   </p>
@@ -91,6 +92,7 @@ const UserHome = async () => {
                       <ShoppingCart />
                     </Link>
                 </div>
+              </div>
               </div>
             </div>
           ))}
