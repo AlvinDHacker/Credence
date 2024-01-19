@@ -5,7 +5,7 @@ export default async function Home({ params }: { params: { id: string } }) {
   return (
     <>
       <Navbar />
-      <Journey id={id} />
+      <Journey id={params.id} />
     </>
   );
 }
