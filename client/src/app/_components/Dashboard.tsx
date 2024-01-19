@@ -18,6 +18,62 @@ import { getOrganizationDetails } from "../api/getOrgDetails";
 import { getUserOrganizationId } from "../api/getOrganizer";
 
 const Dashboard = async () => {
+  const products = [
+    {
+      ProdName: "Apple MacBook Pro 17",
+      Color: "Silver",
+      Category: "Laptop",
+      Price: "$2999",
+    },
+    {
+      ProdName: "Apple MacBook Pro 17",
+      Color: "Silver",
+      Category: "Laptop",
+      Price: "$2999",
+    },
+    {
+      ProdName: "Apple MacBook Pro 17",
+      Color: "Silver",
+      Category: "Laptop",
+      Price: "$2999",
+    },
+  ];
+
+  const warehouses = [
+    {
+      WareName: "Apple MacBook Pro 17",
+      Loc: "Silver",
+      status: true,
+    },
+    {
+      WareName: "Apple MacBook Pro 17",
+      Loc: "Silver",
+      status: true,
+    },
+    {
+      WareName: "Apple MacBook Pro 17",
+      Loc: "Silver",
+      status: false,
+    },
+  ];
+
+  const vehicles = [
+    {
+      VehName: "Apple MacBook Pro 17",
+      RegNo: "Silver",
+      status: true,
+    },
+    {
+      VehName: "Apple MacBook Pro 17",
+      RegNo: "Silver",
+      status: true,
+    },
+    {
+      VehName: "Apple MacBook Pro 17",
+      RegNo: "Silver",
+      status: true,
+    },
+  ];
   const session = await getServerAuthSession();
   let organizationId: string | null | undefined;
   let numOfWarehouses: number | undefined;
@@ -81,7 +137,8 @@ const Dashboard = async () => {
           <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
           <div className="chart-container relative flex w-full flex-row gap-3">
             <h5 className="w-full text-5xl font-bold text-gray-900">
-              {numOfVehicles} <span className="text-lg font-light">Vehicles</span>
+              {numOfVehicles}{" "}
+              <span className="text-lg font-light">Vehicles</span>
             </h5>
           </div>
         </div>
@@ -222,7 +279,66 @@ const Dashboard = async () => {
           <div className="mt-8 rounded-lg bg-white p-4 shadow-md">
             <div className="mt-4 rounded-md bg-white p-4">
               <h2 className="pb-4 text-lg font-semibold text-gray-500">
-                Transacciones
+                Warehouses
+              </h2>
+              <div className="my-1"></div>
+              {/* <!-- Espacio de separación --> */}
+              <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+              {/* <!-- Línea con gradiente --> */}
+
+              <div className="light relative overflow-x-auto rounded-md">
+                <table className="w-full text-left text-sm text-gray-500 rtl:text-right ">
+                  <thead className="bg-gray-50 text-xs uppercase text-gray-700 ">
+                    <tr>
+                      <th scope="col" className="px-6 py-3">
+                        Warehouse name
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Location
+                      </th>
+                      <th scope="col" className="px-6 py-3">
+                        Status
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {warehouses.map((item, i) => {
+                      return (
+                        <tr key={i} className="border-b bg-white ">
+                          <th
+                            scope="row"
+                            className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
+                          >
+                            {item.WareName}
+                          </th>
+                          <td className="px-6 py-4">{item.Loc}</td>
+
+                          <td className="px-6 py-4">
+                            {item.status ? (
+                              <div className="flex items-center">
+                                <div className="me-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                                Active
+                              </div>
+                            ) : (
+                              <div className="flex items-center">
+                                <div className="me-2 h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                                Inactive
+                              </div>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 rounded-lg bg-white p-4 shadow-md">
+            <div className="mt-4 rounded-md bg-white p-4">
+              <h2 className="pb-4 text-lg font-semibold text-gray-500">
+                Products
               </h2>
               <div className="my-1"></div>
               {/* <!-- Espacio de separación --> */}
@@ -248,39 +364,80 @@ const Dashboard = async () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="border-b bg-white ">
-                      <th
-                        scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
-                      >
-                        Apple MacBook Pro 17"
+                    {products.map((item, i) => {
+                      return (
+                        <tr key={i} className="border-b bg-white ">
+                          <th
+                            scope="row"
+                            className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
+                          >
+                            {item.ProdName}
+                          </th>
+                          <td className="px-6 py-4">{item.Color}</td>
+                          <td className="px-6 py-4">{item.Category}</td>
+                          <td className="px-6 py-4">{item.Price}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8 rounded-lg bg-white p-4 shadow-md">
+            <div className="mt-4 rounded-md bg-white p-4">
+              <h2 className="pb-4 text-lg font-semibold text-gray-500">
+                Vehicles
+              </h2>
+              <div className="my-1"></div>
+              {/* <!-- Espacio de separación --> */}
+              <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
+              {/* <!-- Línea con gradiente --> */}
+
+              <div className="light relative overflow-x-auto rounded-md">
+                <table className="w-full text-left text-sm text-gray-500 rtl:text-right ">
+                  <thead className="bg-gray-50 text-xs uppercase text-gray-700 ">
+                    <tr>
+                      <th scope="col" className="px-6 py-3">
+                        Vehicle name
                       </th>
-                      <td className="px-6 py-4">Silver</td>
-                      <td className="px-6 py-4">Laptop</td>
-                      <td className="px-6 py-4">$2999</td>
-                    </tr>
-                    <tr className="border-b bg-white ">
-                      <th
-                        scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
-                      >
-                        Microsoft Surface Pro
+                      <th scope="col" className="px-6 py-3">
+                        Registration Number
                       </th>
-                      <td className="px-6 py-4">White</td>
-                      <td className="px-6 py-4">Laptop PC</td>
-                      <td className="px-6 py-4">$1999</td>
-                    </tr>
-                    <tr className="bg-white">
-                      <th
-                        scope="row"
-                        className="whitespace-nowrap px-6 py-4 font-medium text-gray-900"
-                      >
-                        Magic Mouse 2
+                      <th scope="col" className="px-6 py-3">
+                        Status
                       </th>
-                      <td className="px-6 py-4">Black</td>
-                      <td className="px-6 py-4">Accessories</td>
-                      <td className="px-6 py-4">$99</td>
                     </tr>
+                  </thead>
+                  <tbody>
+                  {vehicles.map((item, i) => {
+                      return (
+                        <tr key={i} className="border-b bg-white ">
+                          <th
+                            scope="row"
+                            className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 "
+                          >
+                            {item.VehName}
+                          </th>
+                          <td className="px-6 py-4">{item.RegNo}</td>
+
+                          <td className="px-6 py-4">
+                            {item.status ? (
+                              <div className="flex items-center">
+                                <div className="me-2 h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                                In Use
+                              </div>
+                            ) : (
+                              <div className="flex items-center">
+                                <div className="me-2 h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                                Not In Use
+                              </div>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               </div>
