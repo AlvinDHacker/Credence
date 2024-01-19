@@ -1,7 +1,7 @@
 "use client";
 import { Map, ShoppingBag, Store } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import contractABI from "../../../build/artifacts/contracts/Tracker.sol/Tracker.json";
+import contractABI from "../../../artStore/artifacts/contracts/Tracker.sol/Tracker.json";
 import { AlchemyProvider, Contract, ethers } from "ethers";
 
 const Journey = ({ id }) => {

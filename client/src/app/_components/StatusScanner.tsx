@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import QrReader from "react-qr-scanner";
-import contractABI from "../../../build/artifacts/contracts/Tracker.sol/Tracker.json";
+import contractABI from "../../../artStore/artifacts/contracts/Tracker.sol/Tracker.json";
 import {
   useReadContract,
   useWriteContract,
