@@ -29,7 +29,7 @@ const FixedNav = () => {
         <a href="/orders">
           <Scroll />
         </a>
-        <a href="/orders">
+        <a href="/scan">
           <ScanText />
         </a>
       </div>

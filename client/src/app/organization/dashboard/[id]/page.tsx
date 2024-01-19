@@ -5,7 +5,7 @@ import React from "react";
 const page = ({ params }: { params: { id: string } }) => {
   return (
     <div>
-      <GenerateQR data={params.id} />
+      <GenerateQR data={`p#${params.id}`} />
     </div>
   );
 };
