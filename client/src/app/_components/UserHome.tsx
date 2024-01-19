@@ -5,8 +5,10 @@ import Link from "next/link";
 
 const UserHome = async () => {
   const data = await getFirstNineProducts();
+  console.log(data)
   return (
     <div>
+      
       <section className="bg-white bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')] dark:bg-gray-900 dark:bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern-dark.svg')]">
         <div className="relative z-10 mx-auto max-w-screen-xl px-4 py-8 text-center lg:py-16">
           <h1 className="mb-4 text-4xl font-bold leading-none tracking-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl">
