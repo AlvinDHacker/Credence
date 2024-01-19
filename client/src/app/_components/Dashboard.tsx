@@ -18,6 +18,7 @@ import { getServerAuthSession } from "~/server/auth";
 import { getOrganizationDetails } from "../api/getOrgDetails";
 import { getUserOrganizationId } from "../api/getOrganizer";
 import { getOrganizationOrders } from "../api/getAllOrders";
+import Link from "next/link";
 
 const Dashboard = async () => {
   const products = [
@@ -197,7 +198,6 @@ const Dashboard = async () => {
               <div className="my-1"></div>
               <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
               <div className="chart-container relative w-full">
-                Zane's Graph
                 <h5 className="mt-5 w-full text-5xl font-bold text-gray-900">
                   $2999
                 </h5>
@@ -214,7 +214,7 @@ const Dashboard = async () => {
               <div className="my-1"></div>
               <div className="mb-6 h-px bg-gradient-to-r from-cyan-300 to-cyan-500"></div>
               <div className="chart-container">
-                Zane's Graph
+                Graph
                 <canvas id="commercesChart"></canvas>
               </div>
             </a>
@@ -257,7 +257,13 @@ const Dashboard = async () => {
                         <td className="px-6 py-4">{order.productId}</td>
                         <td className="px-6 py-4">${order.id}</td>
                         <td className="px-6 py-4">
+<<<<<<< HEAD
                           <QrCode onClick={getQr} />
+=======
+                          <Link href={`/organization/dashboard/${order.id}`}>
+                            <QrCode />
+                          </Link>
+>>>>>>> b75a29f78b7822c68ccce6c1a34838d8094b03b2
                         </td>
                       </tr>
                     ))}
