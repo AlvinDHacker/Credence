@@ -16,7 +16,7 @@ export async function createOrder(
 
   // If the user and product were found, create a new order
   if (user && product) {
-    await db.order.create({
+    const order = await db.order.create({
       data: {
         user: {
           connect: { id: userId },
@@ -27,7 +27,7 @@ export async function createOrder(
       },
     });
 
-    return "Order created successfully";
+    return order.id;
   }
 
   // If the user or product was not found, return null
