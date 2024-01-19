@@ -85,7 +85,7 @@ const Dashboard = async () => {
         userId: string;
         productId: string;
       }[]
-    | null;
+    | null = null;
 
   if (session !== null) {
     organizationId = await getUserOrganizationId(session.user.id);
