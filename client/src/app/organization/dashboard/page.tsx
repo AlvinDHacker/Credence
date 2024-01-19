@@ -1,12 +1,13 @@
+"use client";
+import { useState } from "react";
 import Dashboard from "../../_components/Dashboard";
 import Navbar from "../../_components/Navbar";
 
-export default async function Home() {
-
+export default function Home() {
   return (
     <>
-      <Navbar/>
-      <Dashboard/>
+      <Navbar />
+      <Dashboard />
     </>
   );
 }
