@@ -1,5 +1,11 @@
 // "use client";
-import { CheckCircle, LayoutDashboard, LogOut, User2, Waypoints } from "lucide-react";
+import {
+  CheckCircle,
+  LayoutDashboard,
+  LogOut,
+  User2,
+  Waypoints,
+} from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { getServerAuthSession } from "~/server/auth";
@@ -62,7 +68,7 @@ const Navbar = async () => {
               </Link>
             )}
           </ul> */}
-          <ul className="flex flex-row md:hidden">
+          <ul className="flex flex-row md:hidden gap-3">
             <li>
               <a
                 href="/organization/dashboard"
@@ -71,31 +77,30 @@ const Navbar = async () => {
                 <LayoutDashboard />
               </a>
             </li>
-            <Link
-              href={(await session) ? "/api/auth/signout" : "/api/auth/signin"}
-              className="block rounded px-3 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
-            >
-              {(await session) ? (
-                <div className="flex flex-row gap-3 my-2">
-                  <Wallet />
-                  <button
-                    type="button"
-                    // className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
-                  >
-                    <LogOut />
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <button
-                    type="button"
-                    className="relative inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
-                  >
-                    <User2 />
-                    Sign In
-                  </button>
 
-                  {/* {userType ? (
+            {(await session) ? (
+              <div className="my-2 flex flex-row gap-1">
+                <Wallet />
+                <Link
+                  href={
+                    (await session) ? "/api/auth/signout" : "/api/auth/signin"
+                  }
+                  className="block rounded px-3 text-gray-900 hover:bg-gray-100 md:border-0 md:p-0 md:hover:bg-transparent md:hover:text-blue-700"
+                >
+                  <LogOut />
+                </Link>
+              </div>
+            ) : (
+              <>
+                <button
+                  type="button"
+                  className="relative inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
+                >
+                  <User2 />
+                  Sign In
+                </button>
+
+                {/* {userType ? (
 
                   <ul className="w-48 absolute rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white">
                     <li className="w-full rounded-t-lg border-b border-gray-200 px-4 py-2 dark:border-gray-600">
@@ -106,9 +111,8 @@ const Navbar = async () => {
                     </li>
                   </ul>
                   ) : ''} */}
-                </>
-              )}
-            </Link>
+              </>
+            )}
           </ul>
           <div
             className="hidden w-full text-white md:block md:w-auto"
