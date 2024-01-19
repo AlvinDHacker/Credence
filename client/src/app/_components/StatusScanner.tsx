@@ -57,14 +57,8 @@ export default function StatusScanner() {
   const handleScan = (cData: scanData) => {
     if (cData) {
       const [type, id] = cData.text.split("#");
-      const message =
-        type == "p"
-          ? "Product created"
-          : type == "w"
-            ? "Product moved to warehouse"
-            : type == "v"
-              ? "Product loaded in truck"
-              : "";
+      console.log(cData.text);
+      const message = type == "p" ? "Product created" : type == "w";
 
       navigator.geolocation.getCurrentPosition(async function (position) {
         var pos = position;
@@ -72,7 +66,7 @@ export default function StatusScanner() {
         var long = pos.coords.longitude;
       });
 
-      updateStatus(cData.text, message, lat.toString(), long.toString());
+      // updateStatus(cData.text, message, lat.toString(), long.toString());
     }
   };
 
