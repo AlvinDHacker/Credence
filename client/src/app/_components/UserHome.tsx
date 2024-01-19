@@ -1,4 +1,4 @@
-import { Search, ShoppingCart, Sparkles, Tag } from "lucide-react";
+import { ScanText, Search, ShoppingCart, Sparkles, Tag } from "lucide-react";
 import React from "react";
 import { getFirstNineProducts } from "../api/productList";
 import Link from "next/link";
@@ -56,8 +56,8 @@ const UserHome = async () => {
             <a href="#gallery" className="rounded-full bg-yellow-500 p-3">
               <Sparkles />
             </a>
-            <a href="#gallery" className="rounded-full bg-yellow-500 p-3">
-              <Tag />
+            <a href="/user/scan" className="rounded-full bg-yellow-500 p-3">
+              <ScanText />
             </a>
           </div>
         </div>
