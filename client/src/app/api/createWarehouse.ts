@@ -26,7 +26,7 @@ export async function createWarehouse(
       return "Could not find organization for user";
     }
 
-    await db.warehouses.create({
+    const warehouse = await db.warehouses.create({
       data: {
         name: name,
         location: location,
@@ -36,13 +36,8 @@ export async function createWarehouse(
       },
     });
 
-    // Update the user's role to "organizer"
-    await db.user.update({
-      where: { id: userId },
-      data: { role: "organizer" },
-    });
-
-    return "Warehouse created and user role updated successfully";
+    // Return the id of the newly created warehouse
+    return warehouse.id;
   }
 
   // If the user was not found, return null
