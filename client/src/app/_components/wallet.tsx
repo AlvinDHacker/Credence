@@ -4,6 +4,7 @@ import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState, useLayoutEffect } from "react";
 import Link from "next/link";
+import { Wallet2 } from "lucide-react";
 
 export default function Wallet() {
   const account = useAccount();
@@ -38,17 +39,17 @@ export default function Wallet() {
           <button
             onClick={openModal}
             href="#"
-            className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
+            // className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
           >
-            Connect Wallet
+            <Wallet2/>
           </button>
         ) : (
           <button
             onClick={disconnect}
             href="#"
-            className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
+            // className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
           >
-            Disconnect Wallet
+            <Wallet2/>
           </button>
         )}
       </div>
