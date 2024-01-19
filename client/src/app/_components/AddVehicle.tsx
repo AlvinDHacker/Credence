@@ -45,7 +45,11 @@ const AddVehicle = () => {
         data.mileage as number,
         data.certificateUrl as string,
       );
-      console.log(result);
+      if (result) {
+        console.log(`Warehouse created with id: ${result}`);
+      } else {
+        console.log("Warehouse creation failed");
+      }
       reset();
     }
   };

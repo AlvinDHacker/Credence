@@ -27,7 +27,7 @@ export async function createVehicle(
       return "Could not find organization for user";
     }
 
-    await db.vehicles.create({
+    const vehicle = await db.vehicles.create({
       data: {
         name: name,
         mileage: mileage,
@@ -44,7 +44,7 @@ export async function createVehicle(
       data: { role: "organizer" },
     });
 
-    return "Vehicle created, certificate uploaded and user role updated successfully";
+    return vehicle.id;
   }
 
   // If the user was not found, return null

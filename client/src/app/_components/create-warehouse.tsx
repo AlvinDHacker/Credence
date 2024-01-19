@@ -7,6 +7,7 @@ import { createWarehouse } from "../api/createWarehouse";
 import { getServerAuthSession } from "~/server/auth";
 import { uid } from "../api/authsx";
 import { Factory } from "lucide-react";
+import GenerateQR from "./GenerateQR";
 
 // Define your form schema using Zod
 const schema = z.object({

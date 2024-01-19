@@ -70,22 +70,22 @@ const FixedNav = () => {
                     </div>
                     <div ref={qr} className="my-2 h-full">
                       <div className="grid h-full grid-cols-4 items-center justify-center text-sm text-gray-500">
-                        <a href="/add-products" className="text-center">
+                        <a href="/organization/add-products" className="text-center">
                           <img className="rounded-full " src="/products.png" />
                           Add Products
                         </a>
-                        <a href="/add-employee" className="text-center">
+                        <a href="/organization/add-employee" className="text-center">
                           <img className="rounded-full " src="/employee.png" />
                           Add Employees
                         </a>
-                        <a href="/add-warehouse" className="text-center">
+                        <a href="/organization/add-warehouse" className="text-center">
                           <img
                             className="rounded-full "
                             src="/warehouse2.png"
                           />
                           Add Warehouses
                         </a>
-                        <a href="/add-vehicle" className="text-center">
+                        <a href="/organization/add-vehicle" className="text-center">
                           <img className="rounded-full " src="/truck.png" />
                           Add Vehicles
                         </a>
