@@ -18,7 +18,7 @@ const schema = z.object({
 
 const AddVehicle = () => {
   const [sessionValue, setSessionValue] = useState<string | null>(null);
-  const [vId, setvId] = useState(null);
+  const [vId, setvId] = useState("");
   const {
     register,
     handleSubmit,

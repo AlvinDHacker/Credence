@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import QrReader from "react-qr-scanner";
 import contractABI from "../../../artStore/artifacts/contracts/Tracker.sol/Tracker.json";
 import {
   useReadContract,
@@ -9,6 +8,7 @@ import {
 } from "wagmi";
 import { AlchemyProvider, Contract, ethers } from "ethers";
 import { Position } from "postcss";
+import QrReader from "react-qr-scanner";
 
 interface scanData {
   text: string;

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import contractABI from "../../../artStore/artifacts/contracts/Tracker.sol/Tracker.json";
 import { AlchemyProvider, Contract, ethers } from "ethers";
 
-const Journey = ({ id }) => {
+const Journey = ({ params }: { params: { id: string } }) => {
   const [verified, setVerified] = useState(true);
   const [journey, setJourney] = useState([
     {
@@ -30,25 +30,34 @@ const Journey = ({ id }) => {
   ]);
 
   useEffect(() => {
-    getStatus(id);
-  }, []);
+    getStatus(params.id);
+  }, [params.id]);
 
-  const getStatus = (id) => {
+  const getStatus = (id: string) => {
     const provider = new AlchemyProvider(
       "maticmum",
       process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     );
 
-    const userWallet = new ethers.Wallet(
-      process.env.NEXT_PUBLIC_PRIVATE_KEY,
-      provider,
-    );
+    if (
+      process.env.NEXT_PUBLIC_PRIVATE_KEY &&
+      process.env.NEXT_PUBLIC_CONTRACT_ADDRESS
+    ) {
+      const userWallet = new ethers.Wallet(
+        process.env.NEXT_PUBLIC_PRIVATE_KEY,
+        provider,
+      );
 
-    const tracker = new Contract(
-      process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
-      contractABI.abi,
-      userWallet,
-    );
+      const tracker = new Contract(
+        process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+        contractABI.abi,
+        userWallet,
+      );
+    } else {
+      console.error(
+        "NEXT_PUBLIC_PRIVATE_KEY or NEXT_PUBLIC_CONTRACT_ADDRESS is not set",
+      );
+    }
 
     const tJourney = tracker.track(id);
     console.log(tJourney);
