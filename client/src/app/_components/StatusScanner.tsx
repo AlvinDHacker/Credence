@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import QrReader from "react-qr-scanner";
 import contractABI from "../../../artStore/artifacts/contracts/Tracker.sol/Tracker.json";
 import {
   useReadContract,
@@ -8,10 +7,17 @@ import {
   useWaitForTransactionReceipt,
 } from "wagmi";
 import { AlchemyProvider, Contract, ethers } from "ethers";
+import { Position } from "postcss";
+import QrReader from "react-qr-scanner";
 
 interface scanData {
   text: string;
 }
+
+type PositionState = {
+  latitude: number | null;
+  longitude: number | null;
+};
 
 export default function StatusScanner() {
   const [data, setData] = useState<string>();
@@ -27,31 +33,51 @@ export default function StatusScanner() {
     args: ["pId"],
   });
 
-  const updateStatus = (name, desc, lat, long) => {
-    const provider = new AlchemyProvider(
+  const updateStatus = (
+    name: ethers.Overrides,
+    desc: ethers.Overrides,
+    lat: ethers.Overrides,
+    long: ethers.Overrides,
+  ) => {
+    const provider: AlchemyProvider = new AlchemyProvider(
       "maticmum",
       process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
     );
 
-    const userWallet = new ethers.Wallet(
-      process.env.NEXT_PUBLIC_PRIVATE_KEY,
+    const userWallet: ethers.Wallet = new ethers.Wallet(
+      process.env.NEXT_PUBLIC_PRIVATE_KEY!,
       provider,
     );
 
     const tracker = new Contract(
-      process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+      process.env.NEXT_PUBLIC_CONTRACT_ADDRESS!,
       contractABI.abi,
       userWallet,
     );
 
-    tracker.addStatus(name, desc, lat, long);
+    if (tracker?.addStatus) {
+      void tracker.addStatus(name, desc, lat, long);
+    } else {
+      // Handle the case when the object or method is undefined
+    }
   };
 
+  const [pos, setPos] = useState<PositionState>({
+    latitude: null,
+    longitude: null,
+  });
+
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(async function (position) {
-      var pos = position;
-      console.log(pos);
-    });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position: GeolocationPosition) => {
+          setPos({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+        },
+      );
+    }
   }, []);
 
   const handleScan = (cData: scanData) => {
@@ -60,11 +86,11 @@ export default function StatusScanner() {
       console.log(cData.text);
       const message = type == "p" ? "Product created" : type == "w";
 
-      navigator.geolocation.getCurrentPosition(async function (position) {
-        var pos = position;
-        var lat = pos.coords.latitude;
-        var long = pos.coords.longitude;
-      });
+      // navigator.geolocation.getCurrentPosition(async function (position: PositionState) {
+      //   const pos = position;
+      //   const lat = pos.coords.latitude;
+      //   const long = pos.coords.longitude;
+      // });
 
       // updateStatus(cData.text, message, lat.toString(), long.toString());
     }

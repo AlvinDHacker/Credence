@@ -10,7 +10,7 @@ export default function Wallet() {
   const account = useAccount();
   const { connectors, connect, status } = useConnect();
   const { disconnect } = useDisconnect();
-  let [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const walletImgs = {
     MetaMask: "/metamask.png",
     WalletConnect: "/walletconnect.png",
@@ -37,17 +37,17 @@ export default function Wallet() {
       <div className="">
         {account.status != "connected" ? (
           <button
-            onClick={openModal}
+            onClick={() => openModal()}
             // className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
           >
-            <Wallet2/>
+            <Wallet2 />
           </button>
         ) : (
           <button
-            onClick={disconnect}
+            onClick={() => disconnect()}
             // className="inline-flex items-center gap-2 rounded-lg bg-[#24292F] px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-[#24292F]/90 focus:outline-none focus:ring-4 focus:ring-[#24292F]/50"
           >
-            <Wallet2/>
+            <Wallet2 />
           </button>
         )}
       </div>
