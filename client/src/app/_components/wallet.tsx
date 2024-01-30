@@ -6,12 +6,20 @@ import { Fragment, useEffect, useState, useLayoutEffect } from "react";
 import Link from "next/link";
 import { Wallet2 } from "lucide-react";
 
+interface Wallets {
+  [key: string]: string;
+  MetaMask: string;
+  WalletConnect: string;
+  "Coinbase Wallet": string;
+  Injected: string;
+}
+
 export default function Wallet() {
   const account = useAccount();
   const { connectors, connect, status } = useConnect();
   const { disconnect } = useDisconnect();
   const [isOpen, setIsOpen] = useState(false);
-  const walletImgs = {
+  const walletImgs: Wallets = {
     MetaMask: "/metamask.png",
     WalletConnect: "/walletconnect.png",
     "Coinbase Wallet": "/coinbase.png",

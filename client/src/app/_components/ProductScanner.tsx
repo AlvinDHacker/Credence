@@ -1,14 +1,19 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import QrReader from "react-qr-scanner";
+// import QrReader from "react-qr-scanner";
+import { QrScanner } from "@yudiel/react-qr-scanner";
 interface scanData {
-  text: string;
+  onDecode?: (result: scanData) => void;
+}
+
+interface QrScannerProps {
+  onDecode?: (result: scanData) => void;
 }
 
 export default function ProductScanner() {
   const handleScan = (cData: scanData) => {
     if (cData) {
-      window.location.replace(`/user/journey/${cData.text}`);
+      window.location.replace(`/user/journey/${cData}`);
     }
   };
 
@@ -21,10 +26,11 @@ export default function ProductScanner() {
         "
         >
           <div className="scan-line"></div>
-          <QrReader
-            className="h-full rounded-3xl object-fill"
-            delay={100}
-            onScan={handleScan}
+
+          <QrScanner
+            onDecode={(result: scanData) => {
+              return handleScan(result);
+            }}
           />
         </div>
       </div>

@@ -33,7 +33,7 @@ const Journey = ({ params }: { params: { id: string } }) => {
     getStatus(params.id);
   }, [params.id]);
 
-  const getStatus = (id: string) => {
+  const getStatus = async (id: string) => {
     const provider = new AlchemyProvider(
       "maticmum",
       process.env.NEXT_PUBLIC_ALCHEMY_API_KEY,
@@ -53,15 +53,15 @@ const Journey = ({ params }: { params: { id: string } }) => {
         contractABI.abi,
         userWallet,
       );
+
+      const tJourney = await tracker.track?.(id);
+      console.log(tJourney);
+      setJourney(tJourney);
     } else {
       console.error(
         "NEXT_PUBLIC_PRIVATE_KEY or NEXT_PUBLIC_CONTRACT_ADDRESS is not set",
       );
     }
-
-    const tJourney = tracker.track(id);
-    console.log(tJourney);
-    setJourney(tJourney);
   };
 
   return (
