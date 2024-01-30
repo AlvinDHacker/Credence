@@ -2,7 +2,6 @@ import "~/styles/globals.css";
 
 import { Inter } from "next/font/google";
 
-import { TRPCReactProvider } from "~/trpc/react";
 import { Providers } from "./_components/providers";
 const inter = Inter({
   subsets: ["latin"],
@@ -23,10 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
-        <Providers>
-        <TRPCReactProvider>{children}</TRPCReactProvider>
-
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

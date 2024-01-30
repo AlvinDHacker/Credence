@@ -9,13 +9,11 @@ import {
 import Link from "next/link";
 import React from "react";
 import { getServerAuthSession } from "~/server/auth";
-import { api } from "~/trpc/server";
 import { hasRole } from "../api/hasRole";
 import { redirect } from "next/navigation";
 import Wallet from "./wallet";
 
 const Navbar = async () => {
-  const hello = await api.post.hello.query({ text: "from tRPC" });
   const session = getServerAuthSession();
 
   let role = null;
@@ -68,7 +66,7 @@ const Navbar = async () => {
               </Link>
             )}
           </ul> */}
-          <ul className="flex flex-row md:hidden gap-3">
+          <ul className="flex flex-row gap-3 md:hidden">
             <li>
               <a
                 href="/organization/dashboard"
