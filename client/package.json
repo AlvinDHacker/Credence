@@ -45,6 +45,7 @@
     "react-to-print": "^2.14.15",
     "server-only": "^0.0.1",
     "superjson": "^2.2.1",
+    "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
     "tls": "^0.0.1",
     "viem": "^2.2.0",

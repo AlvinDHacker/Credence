@@ -6,12 +6,8 @@ interface scanData {
   onDecode?: (result: scanData) => void;
 }
 
-interface QrScannerProps {
-  onDecode?: (result: scanData) => void;
-}
-
 export default function ProductScanner() {
-  const handleScan = (cData: scanData) => {
+  const handleScan = (cData: string) => {
     if (cData) {
       window.location.replace(`/user/journey/${cData}`);
     }
@@ -28,8 +24,11 @@ export default function ProductScanner() {
           <div className="scan-line"></div>
 
           <QrScanner
-            onDecode={(result: scanData) => {
+            onDecode={(result: string) => {
               return handleScan(result);
+            }}
+            onError={function (error: Error): void {
+              throw new Error("Function not implemented.");
             }}
           />
         </div>

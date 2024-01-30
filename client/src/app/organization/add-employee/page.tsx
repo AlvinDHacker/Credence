@@ -1,12 +1,12 @@
+"use client";
 import AddEmployee from "../../_components/AddEmployee";
 import Navbar from "../../_components/Navbar";
 
-export default async function Home() {
-
+export default function Home() {
   return (
     <>
-      <Navbar/>
-      <AddEmployee/>
+      <Navbar />
+      <AddEmployee />
     </>
   );
 }

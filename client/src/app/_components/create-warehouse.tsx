@@ -17,7 +17,7 @@ const schema = z.object({
 
 export default function WarehouseForm() {
   const [sessionValue, setSessionValue] = useState<string | null>(null);
-  const [wId, setwId] = useState(null);
+  const [wId, setwId] = useState("");
   const {
     register,
     handleSubmit,

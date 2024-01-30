@@ -1,12 +1,12 @@
+"use client";
 import AddProducts from "../../_components/AddProducts";
 import Navbar from "../../_components/Navbar";
 
-export default async function Home() {
-
+export default function Home() {
   return (
     <>
-      <Navbar/>
-      <AddProducts/>
+      <Navbar />
+      <AddProducts />
     </>
   );
 }

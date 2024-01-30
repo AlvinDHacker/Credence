@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 "use client";
 import { Map, ShoppingBag, Store } from "lucide-react";
 import React, { useEffect, useState } from "react";
@@ -30,7 +32,7 @@ const Journey = ({ params }: { params: { id: string } }) => {
   ]);
 
   useEffect(() => {
-    getStatus(params.id);
+    void getStatus(params.id);
   }, [params.id]);
 
   const getStatus = async (id: string) => {
