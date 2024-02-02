@@ -71,7 +71,7 @@ const FixedNav = () => {
                       Expand Your Organization
                     </div>
                     <div ref={qr} className="my-2 h-full">
-                      <div className="grid h-full grid-cols-4 items-center justify-center text-sm text-gray-500">
+                      <div className="grid h-full md:grid-cols-4 grid-cols-2 items-center justify-center text-sm text-gray-500">
                         <a href="/organization/add-products" className="text-center">
                           <img className="rounded-full " src="/products.png" />
                           Add Products

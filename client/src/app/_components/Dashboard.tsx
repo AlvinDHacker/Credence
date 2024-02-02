@@ -218,6 +218,7 @@ const Dashboard = async () => {
                 <canvas id="commercesChart"></canvas>
               </div>
             </a>
+
           </div>
 
           <div className="mt-8 rounded-lg bg-white p-4 shadow-md">

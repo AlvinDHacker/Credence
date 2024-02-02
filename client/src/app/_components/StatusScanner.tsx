@@ -97,13 +97,14 @@ export default function StatusScanner() {
   };
 
   return (
-    <div className="">
-      <div className="flex h-screen w-full flex-col items-center bg-black pt-36">
-        <div className="mb-8 text-3xl font-bold text-white">Scan QR</div>
-        <div
-          className="relative aspect-square w-3/4 rounded-3xl bg-white
-        "
-        >
+    <div>
+      <div className="w-[80%] mx-auto flex-col items-center  pt-36">
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+        <div className="mb-8 text-3xl font-bold md:text-start text-center text-white">Scan QR</div>
+        <div className="mb-8 text-lg md:block hidden text-white">Scan here to know the Product Info and get a detailed info about the info of the QR, how the product was made, where it was manufactured and its journey from start to end</div>
+          </div>
+        <div className="relative aspect-square w-3/4 mx-auto rounded-3xl bg-white">
           <div className="scan-line"></div>
           {!data ? (
             <QrReader
@@ -114,6 +115,7 @@ export default function StatusScanner() {
           ) : (
             data
           )}
+        </div>
         </div>
       </div>
     </div>

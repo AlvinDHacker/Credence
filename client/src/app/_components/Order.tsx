@@ -4,6 +4,7 @@ const Order = () => {
   return (
     <div className="mx-auto w-[80%]">
       <h2 className="pb-4 text-lg font-semibold text-gray-500">All Orders</h2>
+      <div className="light relative overflow-x-auto rounded-md">
       <table className="w-full text-left text-sm text-gray-500 rtl:text-right ">
         <thead className="bg-gray-50 text-xs uppercase text-gray-700">
           <tr>
@@ -18,9 +19,6 @@ const Order = () => {
             </th>
             <th scope="col" className="px-6 py-3">
               Price
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Status
             </th>
             <th scope="col" className="px-6 py-3">
               Status
@@ -81,6 +79,7 @@ const Order = () => {
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   );
 };
